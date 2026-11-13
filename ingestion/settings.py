@@ -24,6 +24,15 @@ def load_dotenv(path: Path | None = None) -> None:
             os.environ[key] = value
 
 
+def _absolutize_paths() -> None:
+    """Đường dẫn tương đối (từ `.env` hoặc môi trường) tính theo gốc repo, không theo thư mục hiện hành,
+    để dbt (chạy trong dbt_project/) và các script dùng chung một file kho."""
+    for key in ("DUCKDB_PATH", "RAW_RUNS_DIR"):
+        value = os.getenv(key)
+        if value and not Path(value).expanduser().is_absolute():
+            os.environ[key] = str((ROOT / value).resolve())
+
+
 def backend() -> str:
     return os.getenv("WAREHOUSE_BACKEND", "duckdb").strip().lower()
 
@@ -33,3 +42,4 @@ def dbt_target() -> str:
 
 
 load_dotenv()
+_absolutize_paths()

@@ -3,13 +3,13 @@
 with symbols as (
 
     select symbol from {{ ref('stg_price_daily') }}
-    union
+    union distinct
     select symbol from {{ ref('stg_company') }}
-    union
+    union distinct
     select symbol from {{ ref('stg_income_statement') }}
-    union
+    union distinct
     select symbol from {{ ref('stg_balance_sheet') }}
-    union
+    union distinct
     select symbol from {{ ref('stg_cash_flow') }}
 
 ),

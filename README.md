@@ -126,6 +126,10 @@ Mọi script (loader, dbt, validate, Dagster, Streamlit) đọc `.env` ở gốc
 cũ) rồi load job `WRITE_APPEND`, nên chạy được cả trên BigQuery Sandbox chưa bật Billing (lưu ý Sandbox
 tự xóa bảng sau 60 ngày). Dataset `bronze` được tạo đúng `BQ_LOCATION`; dbt tạo `silver`/`gold` cùng location.
 
+**Đã chạy thật ngày 13/11/2026** trên project `vnstock-medallion-nhom10` (`asia-southeast1`, Sandbox): Bronze
+61.798/61.798 dòng, dbt 134 PASS · 1 WARN · 0 ERROR, kiểm chứng 21/21, Dagster `initial_load_job` thành công,
+Streamlit 4 trang đọc Gold trên BigQuery, 24/24 bảng khớp số dòng với DuckDB. Log và ảnh ở `evidence/`.
+
 ## Thu thập batch mới (incremental)
 
 Cách 1 — Dagster: job `daily_refresh_job` gồm asset `raw/vnstock_extract` (gọi `ingest_vnstock.py`, tạo

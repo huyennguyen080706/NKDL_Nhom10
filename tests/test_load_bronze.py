@@ -153,7 +153,7 @@ def test_empty_extract_is_ok_with_zero_rows(tmp_path: Path):
     assert empty["load_status"] == "empty"
     assert empty["loaded_row_count"] == 0
     assert empty["row_count_match"]
-    assert load_bronze.main(["--raw-runs-dir", str(runs), "--duckdb-path", str(db)]) == 0
+    assert load_bronze.main(["--raw-runs-dir", str(runs), "--backend", "duckdb", "--duckdb-path", str(db)]) == 0
 
 
 def test_bq_safe_frame_casts_all_null_object_columns():

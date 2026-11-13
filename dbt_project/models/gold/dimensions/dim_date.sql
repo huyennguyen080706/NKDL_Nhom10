@@ -32,7 +32,7 @@ spine as (
 trading_days as (
 
     select distinct trade_date from {{ ref('stg_price_daily') }}
-    union
+    union distinct
     select distinct trade_date from {{ ref('stg_index_daily') }}
 
 ),
