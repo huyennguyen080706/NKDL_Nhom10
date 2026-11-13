@@ -35,3 +35,6 @@ data/raw/
 
 # Bằng chứng nghiệm thu (log đã kiểm tra không chứa bí mật)
 !evidence/logs/
+
+# Streamlit secrets thật (chứa key Service Account)
+.streamlit/secrets.toml

@@ -23,11 +23,29 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from ingestion import settings  # noqa: E402  (nạp .env)
 
+
+def _secrets() -> dict:
+    """Đọc `st.secrets` (Streamlit Community Cloud / .streamlit/secrets.toml); rỗng nếu không có."""
+    try:
+        return {k: st.secrets[k] for k in st.secrets.keys()}
+    except Exception:  # không có file secrets khi chạy local
+        return {}
+
+
+_SECRETS = _secrets()
+# Trên Streamlit Cloud không có .env: lấy cấu hình từ secrets (biến môi trường vẫn được ưu tiên).
+for _key in ("WAREHOUSE_BACKEND", "GCP_PROJECT_ID", "BQ_LOCATION"):
+    if _key in _SECRETS and not os.getenv(_key):
+        os.environ[_key] = str(_SECRETS[_key])
+_SA_INFO = dict(_SECRETS["gcp_service_account"]) if "gcp_service_account" in _SECRETS else None
+
 BACKEND = settings.backend()
 DB_PATH = Path(os.getenv("DUCKDB_PATH", ROOT / "warehouse" / "vnstock.duckdb")).expanduser().resolve()
 GCP_PROJECT = os.getenv("GCP_PROJECT_ID", "")
 BQ_LOCATION = os.getenv("BQ_LOCATION") or None
 DBT_RUN_RESULTS = ROOT / "dbt_project" / "target" / "run_results.json"
+# Bản kết quả dbt build trên BigQuery đã lưu trong repo: dùng khi deploy (không có thư mục target/)
+DBT_RUN_RESULTS_SNAPSHOT = ROOT / "evidence" / "logs" / "bigquery_dbt_run_results.json"
 
 
 def backend_label() -> str:
@@ -38,7 +56,13 @@ def backend_label() -> str:
 def _bq_client():
     from google.cloud import bigquery
 
-    return bigquery.Client(project=GCP_PROJECT, location=BQ_LOCATION)
+    if _SA_INFO:  # Streamlit Cloud: Service Account chỉ đọc, key nằm trong secrets
+        from google.oauth2 import service_account
+
+        creds = service_account.Credentials.from_service_account_info(
+            _SA_INFO, scopes=["https://www.googleapis.com/auth/cloud-platform"])
+        return bigquery.Client(project=GCP_PROJECT or creds.project_id, credentials=creds, location=BQ_LOCATION)
+    return bigquery.Client(project=GCP_PROJECT, location=BQ_LOCATION)  # local: ADC
 
 
 def _bq_param(value):
@@ -141,9 +165,10 @@ def index_date_bounds() -> tuple[pd.Timestamp, pd.Timestamp]:
 
 def dbt_run_results() -> tuple[pd.DataFrame, str | None]:
     """Kết quả lần `dbt build` gần nhất (đọc từ target/run_results.json)."""
-    if not DBT_RUN_RESULTS.is_file():
+    path = next((p for p in (DBT_RUN_RESULTS, DBT_RUN_RESULTS_SNAPSHOT) if p.is_file()), None)
+    if path is None:
         return pd.DataFrame(), None
-    data = json.loads(DBT_RUN_RESULTS.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
     rows = []
     for r in data.get("results", []):
         uid = r.get("unique_id", "")
