@@ -31,3 +31,7 @@ warehouse/*.duckdb
 warehouse/*.duckdb.wal
 data/raw/
 *.zip
+.tmp_dagster_home*/
+
+# Bằng chứng nghiệm thu (log đã kiểm tra không chứa bí mật)
+!evidence/logs/

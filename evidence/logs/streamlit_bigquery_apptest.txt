@@ -1,0 +1,21 @@
+2026-11-13 09:24:07.807 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-13 09:24:12.729 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+  start = ilo if PRESETS[preset] is None else max(ilo, ihi - pd.Timedelta(days=PRESETS[preset]))
+2026-11-13 09:24:15.532 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+  start = lo if PRESETS[preset] is None else max(lo, hi - pd.Timedelta(days=PRESETS[preset]))
+2026-11-13 09:24:18.325 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+  ((hi - pd.Timedelta(days=days)).date(),))
+2026-11-13 09:24:19.616 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+app/streamlit_app.py                   exceptions/errors=0 metrics=4 sidebar='Kho: **BigQuery · vnstock-medallion-nhom10**  
+Batch: `initial_20261103`  
+Trích xuất: 03/'
+app/pages/1_Market_Overview.py         exceptions/errors=0 metrics=4 sidebar='VN-Index có dữ liệu từ 28/10/2022 đến 03/11/2026. | Kho: **BigQuery · vnstock-medallion-nh'
+app/pages/2_Stock_Analysis.py          exceptions/errors=0 metrics=11 sidebar='Kho: **BigQuery · vnstock-medallion-nhom10**  
+Batch: `initial_20261103`  
+Trích xuất: 03/'
+app/pages/3_Financials_Alerts.py       exceptions/errors=0 metrics=8 sidebar='Kho: **BigQuery · vnstock-medallion-nhom10**  
+Batch: `initial_20261103`  
+Trích xuất: 03/'
+app/pages/4_Pipeline_Health.py         exceptions/errors=0 metrics=8 sidebar='Kho: **BigQuery · vnstock-medallion-nhom10**  
+Batch: `initial_20261103`  
+Trích xuất: 03/'

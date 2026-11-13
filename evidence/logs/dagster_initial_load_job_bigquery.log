@@ -1,0 +1,642 @@
+D:\DW_Nhom10\DW_Nhom10\vnstock-medallion-warehouse\.venv\Lib\site-packages\click\core.py:911: SupersessionWarning: Function `job_execute_command` is superseded and its usage is discouraged. Use 'dg launch --job <job_name>' instead.
+  return callback(*args, **kwargs)
+2026-11-13 09:29:06 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - RUN_START - Started execution of run for "initial_load_job".
+2026-11-13 09:29:06 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - ENGINE_EVENT - Executing steps using multiprocess executor: parent process (pid: 10748)
+2026-11-13 09:29:06 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - bronze_load - STEP_WORKER_STARTING - Launching subprocess for "bronze_load".
+2026-11-13 09:29:08 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_WORKER_STARTED - Executing step "bronze_load" in subprocess.
+2026-11-13 09:29:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - RESOURCE_INIT_STARTED - Starting initialization of resources [io_manager].
+2026-11-13 09:29:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - RESOURCE_INIT_SUCCESS - Finished initialization of resources [io_manager].
+2026-11-13 09:29:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - LOGS_CAPTURED - Capturing logs for process (pid: 12768).
+2026-11-13 09:29:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_START - Started execution of step "bronze_load".
+2026-11-13 09:29:47 +0700 - dagster - INFO - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - bronze_load - 
+        batch_id         target_table  datasets  loaded  manifest_rows  bronze_rows  mismatched
+initial_20261103    balance_sheet_raw        15      15           1160         1160           0
+initial_20261103        cash_flow_raw        15      15            420          420           0
+initial_20261103 company_overview_raw        40      40             40           40           0
+initial_20261103 income_statement_raw        15      15           1064         1064           0
+initial_20261103      index_daily_raw         1       1           1000         1000           0
+initial_20261103      price_daily_raw        40      40          58114        58114           0
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_OUTPUT - Yielded output "bronze__price_daily_raw" of type "Nothing". (Type check passed).
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - ASSET_MATERIALIZATION - Materialized value bronze price_daily_raw.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_OUTPUT - Yielded output "bronze__index_daily_raw" of type "Nothing". (Type check passed).
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - ASSET_MATERIALIZATION - Materialized value bronze index_daily_raw.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_OUTPUT - Yielded output "bronze__company_overview_raw" of type "Nothing". (Type check passed).
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - ASSET_MATERIALIZATION - Materialized value bronze company_overview_raw.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_OUTPUT - Yielded output "bronze__income_statement_raw" of type "Nothing". (Type check passed).
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - ASSET_MATERIALIZATION - Materialized value bronze income_statement_raw.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_OUTPUT - Yielded output "bronze__balance_sheet_raw" of type "Nothing". (Type check passed).
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - ASSET_MATERIALIZATION - Materialized value bronze balance_sheet_raw.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_OUTPUT - Yielded output "bronze__cash_flow_raw" of type "Nothing". (Type check passed).
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - ASSET_MATERIALIZATION - Materialized value bronze cash_flow_raw.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_OUTPUT - Yielded output "bronze__ingestion_audit" of type "Nothing". (Type check passed).
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - ASSET_MATERIALIZATION - Materialized value bronze ingestion_audit.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 12768 - bronze_load - STEP_SUCCESS - Finished execution of step "bronze_load" in 37.66s.
+2026-11-13 09:29:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - medallion_dbt_assets - STEP_WORKER_STARTING - Launching subprocess for "medallion_dbt_assets".
+2026-11-13 09:29:50 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_WORKER_STARTED - Executing step "medallion_dbt_assets" in subprocess.
+2026-11-13 09:29:53 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - RESOURCE_INIT_STARTED - Starting initialization of resources [dbt, io_manager].
+2026-11-13 09:29:53 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - RESOURCE_INIT_SUCCESS - Finished initialization of resources [dbt, io_manager].
+2026-11-13 09:29:53 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - LOGS_CAPTURED - Capturing logs for process (pid: 21604).
+2026-11-13 09:29:53 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_START - Started execution of step "medallion_dbt_assets".
+2026-11-13 09:29:53 +0700 - dagster - INFO - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'fqn:*']`.
+2026-11-13 09:30:00 +0700 - dagster - INFO - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Copying `D:\DW_Nhom10\DW_Nhom10\vnstock-medallion-warehouse\dbt_project\target\partial_parse.msgpack` to `D:\DW_Nhom10\DW_Nhom10\vnstock-medallion-warehouse\dbt_project\target\medallion_dbt_assets-dbc547b-9d453a0\partial_parse.msgpack` to take advantage of partial parsing.
+2026-11-13 09:30:00 +0700 - dagster - INFO - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Running dbt command: `D:\DW_Nhom10\DW_Nhom10\vnstock-medallion-warehouse\.venv\Scripts\dbt.exe build --select fqn:*`.
+Running with dbt=1.12.7
+Registered adapter: bigquery=1.12.3
+Unable to do partial parsing because config vars, config profile, or config target have changed
+Unable to do partial parsing because profile has changed
+Unable to do partial parsing because a project dependency has been added
+Found 17 models, 118 data tests, 7 sources, 574 macros
+
+Concurrency: 4 threads (target='bigquery')
+
+WARNING:google.auth._default:No project ID could be determined. Consider running `gcloud config set project` or setting the GOOGLE_CLOUD_PROJECT environment variable
+WARNING:google.auth._default:No project ID could be determined. Consider running `gcloud config set project` or setting the GOOGLE_CLOUD_PROJECT environment variable
+3 of 135 START test source_not_null_bronze_balance_sheet_raw__batch_id ......... [RUN]
+4 of 135 START test source_not_null_bronze_balance_sheet_raw_symbol ............ [RUN]
+1 of 135 START test bronze_audit_all_extracts_loaded ........................... [RUN]
+2 of 135 START test bronze_audit_row_counts_match_manifest ..................... [RUN]
+3 of 135 PASS source_not_null_bronze_balance_sheet_raw__batch_id ............... [[32mPASS[0m in 1.28s]
+2026-11-13 09:30:10 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_balance_sheet_raw__batch_id`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+5 of 135 START test source_not_null_bronze_cash_flow_raw__batch_id ............. [RUN]
+2 of 135 PASS bronze_audit_row_counts_match_manifest ........................... [[32mPASS[0m in 1.30s]
+2026-11-13 09:30:10 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `bronze_audit_row_counts_match_manifest`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+4 of 135 PASS source_not_null_bronze_balance_sheet_raw_symbol .................. [[32mPASS[0m in 1.31s]
+2026-11-13 09:30:10 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_balance_sheet_raw_symbol`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+1 of 135 PASS bronze_audit_all_extracts_loaded ................................. [[32mPASS[0m in 1.32s]
+2026-11-13 09:30:10 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `bronze_audit_all_extracts_loaded`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:10 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+6 of 135 START test source_not_null_bronze_cash_flow_raw_symbol ................ [RUN]
+7 of 135 START test source_not_null_bronze_company_overview_raw__batch_id ...... [RUN]
+8 of 135 START test source_not_null_bronze_company_overview_raw_symbol ......... [RUN]
+5 of 135 PASS source_not_null_bronze_cash_flow_raw__batch_id ................... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:11 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_cash_flow_raw__batch_id`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:11 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+9 of 135 START test source_not_null_bronze_income_statement_raw__batch_id ...... [RUN]
+6 of 135 PASS source_not_null_bronze_cash_flow_raw_symbol ...................... [[32mPASS[0m in 0.95s]
+2026-11-13 09:30:11 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_cash_flow_raw_symbol`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:11 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+10 of 135 START test source_not_null_bronze_income_statement_raw_symbol ........ [RUN]
+8 of 135 PASS source_not_null_bronze_company_overview_raw_symbol ............... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:11 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_company_overview_raw_symbol`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:11 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+11 of 135 START test source_not_null_bronze_index_daily_raw__batch_id .......... [RUN]
+7 of 135 PASS source_not_null_bronze_company_overview_raw__batch_id ............ [[32mPASS[0m in 1.03s]
+2026-11-13 09:30:11 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_company_overview_raw__batch_id`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:11 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+12 of 135 START test source_not_null_bronze_index_daily_raw_symbol ............. [RUN]
+9 of 135 PASS source_not_null_bronze_income_statement_raw__batch_id ............ [[32mPASS[0m in 0.91s]
+2026-11-13 09:30:12 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_income_statement_raw__batch_id`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:12 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+13 of 135 START test source_not_null_bronze_price_daily_raw__batch_id .......... [RUN]
+12 of 135 PASS source_not_null_bronze_index_daily_raw_symbol ................... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:12 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_index_daily_raw_symbol`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:12 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+14 of 135 START test source_not_null_bronze_price_daily_raw_symbol ............. [RUN]
+10 of 135 PASS source_not_null_bronze_income_statement_raw_symbol .............. [[32mPASS[0m in 1.12s]
+2026-11-13 09:30:12 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_income_statement_raw_symbol`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:12 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+15 of 135 START test source_not_null_bronze_price_daily_raw_time ............... [RUN]
+11 of 135 PASS source_not_null_bronze_index_daily_raw__batch_id ................ [[32mPASS[0m in 1.21s]
+2026-11-13 09:30:12 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_index_daily_raw__batch_id`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:12 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+16 of 135 START test source_unique_combination_bronze_ingestion_audit_batch_id__dataset_key  [RUN]
+13 of 135 PASS source_not_null_bronze_price_daily_raw__batch_id ................ [[32mPASS[0m in 0.79s]
+2026-11-13 09:30:12 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_price_daily_raw__batch_id`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:12 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+17 of 135 START sql table model silver.stg_balance_sheet ....................... [RUN]
+15 of 135 PASS source_not_null_bronze_price_daily_raw_time ..................... [[32mPASS[0m in 0.83s]
+2026-11-13 09:30:13 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_price_daily_raw_time`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:13 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+18 of 135 START sql table model silver.stg_cash_flow ........................... [RUN]
+14 of 135 PASS source_not_null_bronze_price_daily_raw_symbol ................... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:13 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_not_null_bronze_price_daily_raw_symbol`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:13 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+19 of 135 START sql table model silver.stg_company ............................. [RUN]
+16 of 135 PASS source_unique_combination_bronze_ingestion_audit_batch_id__dataset_key  [[32mPASS[0m in 0.87s]
+2026-11-13 09:30:13 +0700 - dagster - WARNING - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Logging an `AssetObservation` instead of an `AssetCheckResult` for dbt test `source_unique_combination_bronze_ingestion_audit_batch_id__dataset_key`.
+
+This test was not included in Dagster's asset check selection, and was likely executed due to dbt indirect selection.
+2026-11-13 09:30:13 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_OBSERVATION - DagsterEventType.ASSET_OBSERVATION for step medallion_dbt_assets
+20 of 135 START sql table model silver.stg_income_statement .................... [RUN]
+18 of 135 OK created sql table model silver.stg_cash_flow ...................... [[32mCREATE TABLE (420.0 rows, 95.2 KiB processed)[0m in 1.75s]
+2026-11-13 09:30:14 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow" of type "Nothing". (Type check passed).
+2026-11-13 09:30:14 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value silver stg_cash_flow.
+21 of 135 START sql table model silver.stg_index_daily ......................... [RUN]
+17 of 135 OK created sql table model silver.stg_balance_sheet .................. [[32mCREATE TABLE (1.2k rows, 218.3 KiB processed)[0m in 2.09s]
+2026-11-13 09:30:15 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet" of type "Nothing". (Type check passed).
+2026-11-13 09:30:15 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value silver stg_balance_sheet.
+22 of 135 START sql table model silver.stg_price_daily ......................... [RUN]
+20 of 135 OK created sql table model silver.stg_income_statement ............... [[32mCREATE TABLE (1.1k rows, 221.1 KiB processed)[0m in 1.76s]
+2026-11-13 09:30:15 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement" of type "Nothing". (Type check passed).
+2026-11-13 09:30:15 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value silver stg_income_statement.
+23 of 135 START test accepted_values_stg_cash_flow_period_type__quarter__year .. [RUN]
+19 of 135 OK created sql table model silver.stg_company ........................ [[32mCREATE TABLE (40.0 rows, 99.9 KiB processed)[0m in 2.01s]
+2026-11-13 09:30:15 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_company" of type "Nothing". (Type check passed).
+2026-11-13 09:30:15 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value silver stg_company.
+24 of 135 START test expression_true_stg_cash_flow_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [RUN]
+23 of 135 PASS accepted_values_stg_cash_flow_period_type__quarter__year ........ [[32mPASS[0m in 0.84s]
+2026-11-13 09:30:15 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_accepted_values_stg_cash_flow_period_type__quarter__year" of type "Any". (Type check passed).
+2026-11-13 09:30:16 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_stg_cash_flow_period_type__quarter__year' on 'silver/stg_cash_flow' passed.
+25 of 135 START test expression_true_stg_cash_flow_unit_VND_ ................... [RUN]
+24 of 135 PASS expression_true_stg_cash_flow_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [[32mPASS[0m in 1.00s]
+2026-11-13 09:30:16 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_expression_true_stg_cash_flow_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100" of type "Any". (Type check passed).
+2026-11-13 09:30:16 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'expression_true_stg_cash_flow_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100' on 'silver/stg_cash_flow' passed.
+26 of 135 START test not_null_stg_cash_flow_metric_id .......................... [RUN]
+25 of 135 PASS expression_true_stg_cash_flow_unit_VND_ ......................... [[32mPASS[0m in 0.74s]
+2026-11-13 09:30:16 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_expression_true_stg_cash_flow_unit_VND_" of type "Any". (Type check passed).
+2026-11-13 09:30:16 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'expression_true_stg_cash_flow_unit_VND_' on 'silver/stg_cash_flow' passed.
+27 of 135 START test not_null_stg_cash_flow_metric_name ........................ [RUN]
+26 of 135 PASS not_null_stg_cash_flow_metric_id ................................ [[32mPASS[0m in 0.75s]
+2026-11-13 09:30:17 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_not_null_stg_cash_flow_metric_id" of type "Any". (Type check passed).
+2026-11-13 09:30:17 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_cash_flow_metric_id' on 'silver/stg_cash_flow' passed.
+28 of 135 START test not_null_stg_cash_flow_period ............................. [RUN]
+22 of 135 OK created sql table model silver.stg_price_daily .................... [[32mCREATE TABLE (58.1k rows, 6.2 MiB processed)[0m in 2.04s]
+2026-11-13 09:30:17 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily" of type "Nothing". (Type check passed).
+2026-11-13 09:30:17 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value silver stg_price_daily.
+29 of 135 START test not_null_stg_cash_flow_period_end_date .................... [RUN]
+21 of 135 OK created sql table model silver.stg_index_daily .................... [[32mCREATE TABLE (1.0k rows, 118.2 KiB processed)[0m in 2.09s]
+2026-11-13 09:30:17 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_index_daily" of type "Nothing". (Type check passed).
+2026-11-13 09:30:17 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value silver stg_index_daily.
+30 of 135 START test not_null_stg_cash_flow_symbol ............................. [RUN]
+30 of 135 PASS not_null_stg_cash_flow_symbol ................................... [[32mPASS[0m in 0.90s]
+2026-11-13 09:30:17 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_not_null_stg_cash_flow_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_cash_flow_symbol' on 'silver/stg_cash_flow' passed.
+31 of 135 START test unique_combination_stg_cash_flow_symbol__period__metric_id  [RUN]
+29 of 135 PASS not_null_stg_cash_flow_period_end_date .......................... [[32mPASS[0m in 1.03s]
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_not_null_stg_cash_flow_period_end_date" of type "Any". (Type check passed).
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_cash_flow_period_end_date' on 'silver/stg_cash_flow' passed.
+32 of 135 START test accepted_values_stg_balance_sheet_period_type__quarter__year  [RUN]
+28 of 135 PASS not_null_stg_cash_flow_period ................................... [[32mPASS[0m in 1.08s]
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_not_null_stg_cash_flow_period" of type "Any". (Type check passed).
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_cash_flow_period' on 'silver/stg_cash_flow' passed.
+33 of 135 START test expression_true_stg_balance_sheet_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [RUN]
+27 of 135 PASS not_null_stg_cash_flow_metric_name .............................. [[32mPASS[0m in 1.70s]
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_not_null_stg_cash_flow_metric_name" of type "Any". (Type check passed).
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_cash_flow_metric_name' on 'silver/stg_cash_flow' passed.
+34 of 135 START test expression_true_stg_balance_sheet_unit_VND_ ............... [RUN]
+31 of 135 PASS unique_combination_stg_cash_flow_symbol__period__metric_id ...... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_cash_flow_unique_combination_stg_cash_flow_symbol__period__metric_id" of type "Any". (Type check passed).
+2026-11-13 09:30:18 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_stg_cash_flow_symbol__period__metric_id' on 'silver/stg_cash_flow' passed.
+32 of 135 PASS accepted_values_stg_balance_sheet_period_type__quarter__year .... [[32mPASS[0m in 0.88s]
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_accepted_values_stg_balance_sheet_period_type__quarter__year" of type "Any". (Type check passed).
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_stg_balance_sheet_period_type__quarter__year' on 'silver/stg_balance_sheet' passed.
+33 of 135 PASS expression_true_stg_balance_sheet_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [[32mPASS[0m in 0.85s]
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_expression_true_stg_balance_sheet_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100" of type "Any". (Type check passed).
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'expression_true_stg_balance_sheet_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100' on 'silver/stg_balance_sheet' passed.
+35 of 135 START test not_null_stg_balance_sheet_metric_id ...................... [RUN]
+36 of 135 START test not_null_stg_balance_sheet_metric_name .................... [RUN]
+37 of 135 START test not_null_stg_balance_sheet_period ......................... [RUN]
+34 of 135 PASS expression_true_stg_balance_sheet_unit_VND_ ..................... [[32mPASS[0m in 0.81s]
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_expression_true_stg_balance_sheet_unit_VND_" of type "Any". (Type check passed).
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'expression_true_stg_balance_sheet_unit_VND_' on 'silver/stg_balance_sheet' passed.
+38 of 135 START test not_null_stg_balance_sheet_period_end_date ................ [RUN]
+37 of 135 PASS not_null_stg_balance_sheet_period ............................... [[32mPASS[0m in 0.91s]
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_not_null_stg_balance_sheet_period" of type "Any". (Type check passed).
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_balance_sheet_period' on 'silver/stg_balance_sheet' passed.
+39 of 135 START test not_null_stg_balance_sheet_symbol ......................... [RUN]
+35 of 135 PASS not_null_stg_balance_sheet_metric_id ............................ [[32mPASS[0m in 1.01s]
+2026-11-13 09:30:19 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_not_null_stg_balance_sheet_metric_id" of type "Any". (Type check passed).
+2026-11-13 09:30:20 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_balance_sheet_metric_id' on 'silver/stg_balance_sheet' passed.
+40 of 135 START test unique_combination_stg_balance_sheet_symbol__period__metric_id  [RUN]
+38 of 135 PASS not_null_stg_balance_sheet_period_end_date ...................... [[32mPASS[0m in 0.94s]
+2026-11-13 09:30:20 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_not_null_stg_balance_sheet_period_end_date" of type "Any". (Type check passed).
+2026-11-13 09:30:20 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_balance_sheet_period_end_date' on 'silver/stg_balance_sheet' passed.
+41 of 135 START test accepted_values_stg_income_statement_period_type__quarter__year  [RUN]
+36 of 135 PASS not_null_stg_balance_sheet_metric_name .......................... [[32mPASS[0m in 1.34s]
+2026-11-13 09:30:20 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_not_null_stg_balance_sheet_metric_name" of type "Any". (Type check passed).
+2026-11-13 09:30:20 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_balance_sheet_metric_name' on 'silver/stg_balance_sheet' passed.
+42 of 135 START test expression_true_stg_income_statement_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [RUN]
+41 of 135 PASS accepted_values_stg_income_statement_period_type__quarter__year . [[32mPASS[0m in 0.80s]
+2026-11-13 09:30:20 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_accepted_values_stg_income_statement_period_type__quarter__year" of type "Any". (Type check passed).
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_stg_income_statement_period_type__quarter__year' on 'silver/stg_income_statement' passed.
+43 of 135 START test expression_true_stg_income_statement_unit_VND_ ............ [RUN]
+40 of 135 PASS unique_combination_stg_balance_sheet_symbol__period__metric_id .. [[32mPASS[0m in 0.99s]
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_unique_combination_stg_balance_sheet_symbol__period__metric_id" of type "Any". (Type check passed).
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_stg_balance_sheet_symbol__period__metric_id' on 'silver/stg_balance_sheet' passed.
+44 of 135 START test not_null_stg_income_statement_metric_id ................... [RUN]
+39 of 135 PASS not_null_stg_balance_sheet_symbol ............................... [[32mPASS[0m in 1.07s]
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_balance_sheet_not_null_stg_balance_sheet_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_balance_sheet_symbol' on 'silver/stg_balance_sheet' passed.
+45 of 135 START test not_null_stg_income_statement_metric_name ................. [RUN]
+42 of 135 PASS expression_true_stg_income_statement_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [[32mPASS[0m in 0.94s]
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_expression_true_stg_income_statement_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100" of type "Any". (Type check passed).
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'expression_true_stg_income_statement_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100' on 'silver/stg_income_statement' passed.
+46 of 135 START test not_null_stg_income_statement_period ...................... [RUN]
+44 of 135 PASS not_null_stg_income_statement_metric_id ......................... [[32mPASS[0m in 0.85s]
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_not_null_stg_income_statement_metric_id" of type "Any". (Type check passed).
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_income_statement_metric_id' on 'silver/stg_income_statement' passed.
+47 of 135 START test not_null_stg_income_statement_period_end_date ............. [RUN]
+43 of 135 PASS expression_true_stg_income_statement_unit_VND_ .................. [[32mPASS[0m in 0.93s]
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_expression_true_stg_income_statement_unit_VND_" of type "Any". (Type check passed).
+2026-11-13 09:30:21 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'expression_true_stg_income_statement_unit_VND_' on 'silver/stg_income_statement' passed.
+48 of 135 START test not_null_stg_income_statement_symbol ...................... [RUN]
+45 of 135 PASS not_null_stg_income_statement_metric_name ....................... [[32mPASS[0m in 0.99s]
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_not_null_stg_income_statement_metric_name" of type "Any". (Type check passed).
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_income_statement_metric_name' on 'silver/stg_income_statement' passed.
+49 of 135 START test unique_combination_stg_income_statement_symbol__period__metric_id  [RUN]
+46 of 135 PASS not_null_stg_income_statement_period ............................ [[32mPASS[0m in 0.89s]
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_not_null_stg_income_statement_period" of type "Any". (Type check passed).
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_income_statement_period' on 'silver/stg_income_statement' passed.
+50 of 135 START test accepted_values_stg_company_exchange__HOSE__HNX__UPCOM .... [RUN]
+47 of 135 PASS not_null_stg_income_statement_period_end_date ................... [[32mPASS[0m in 0.98s]
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_not_null_stg_income_statement_period_end_date" of type "Any". (Type check passed).
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_income_statement_period_end_date' on 'silver/stg_income_statement' passed.
+51 of 135 START test not_null_stg_company_exchange ............................. [RUN]
+48 of 135 PASS not_null_stg_income_statement_symbol ............................ [[32mPASS[0m in 0.99s]
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_not_null_stg_income_statement_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:22 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_income_statement_symbol' on 'silver/stg_income_statement' passed.
+52 of 135 START test not_null_stg_company_listing_date ......................... [RUN]
+50 of 135 PASS accepted_values_stg_company_exchange__HOSE__HNX__UPCOM .......... [[32mPASS[0m in 0.81s]
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_company_accepted_values_stg_company_exchange__HOSE__HNX__UPCOM" of type "Any". (Type check passed).
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_stg_company_exchange__HOSE__HNX__UPCOM' on 'silver/stg_company' passed.
+53 of 135 START test not_null_stg_company_symbol ............................... [RUN]
+49 of 135 PASS unique_combination_stg_income_statement_symbol__period__metric_id  [[32mPASS[0m in 1.00s]
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_income_statement_unique_combination_stg_income_statement_symbol__period__metric_id" of type "Any". (Type check passed).
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_stg_income_statement_symbol__period__metric_id' on 'silver/stg_income_statement' passed.
+54 of 135 START test unique_stg_company_symbol ................................. [RUN]
+51 of 135 PASS not_null_stg_company_exchange ................................... [[32mPASS[0m in 0.82s]
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_company_not_null_stg_company_exchange" of type "Any". (Type check passed).
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_company_exchange' on 'silver/stg_company' passed.
+55 of 135 START test not_null_stg_price_daily_batch_id ......................... [RUN]
+52 of 135 PASS not_null_stg_company_listing_date ............................... [[32mPASS[0m in 0.80s]
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_company_not_null_stg_company_listing_date" of type "Any". (Type check passed).
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_company_listing_date' on 'silver/stg_company' passed.
+56 of 135 START test not_null_stg_price_daily_close ............................ [RUN]
+54 of 135 PASS unique_stg_company_symbol ....................................... [[32mPASS[0m in 0.95s]
+2026-11-13 09:30:23 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_company_unique_stg_company_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_stg_company_symbol' on 'silver/stg_company' passed.
+57 of 135 START test not_null_stg_price_daily_high ............................. [RUN]
+53 of 135 PASS not_null_stg_company_symbol ..................................... [[32mPASS[0m in 1.05s]
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_company_not_null_stg_company_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_company_symbol' on 'silver/stg_company' passed.
+58 of 135 START test not_null_stg_price_daily_low .............................. [RUN]
+55 of 135 PASS not_null_stg_price_daily_batch_id ............................... [[32mPASS[0m in 0.99s]
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_batch_id" of type "Any". (Type check passed).
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_batch_id' on 'silver/stg_price_daily' passed.
+59 of 135 START test not_null_stg_price_daily_open ............................. [RUN]
+56 of 135 PASS not_null_stg_price_daily_close .................................. [[32mPASS[0m in 0.99s]
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_close" of type "Any". (Type check passed).
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_close' on 'silver/stg_price_daily' passed.
+60 of 135 START test not_null_stg_price_daily_symbol ........................... [RUN]
+58 of 135 PASS not_null_stg_price_daily_low .................................... [[32mPASS[0m in 0.78s]
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_low" of type "Any". (Type check passed).
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_low' on 'silver/stg_price_daily' passed.
+61 of 135 START test not_null_stg_price_daily_trade_date ....................... [RUN]
+57 of 135 PASS not_null_stg_price_daily_high ................................... [[32mPASS[0m in 0.95s]
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_high" of type "Any". (Type check passed).
+2026-11-13 09:30:24 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_high' on 'silver/stg_price_daily' passed.
+62 of 135 START test not_null_stg_price_daily_volume ........................... [RUN]
+59 of 135 PASS not_null_stg_price_daily_open ................................... [[32mPASS[0m in 0.79s]
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_open" of type "Any". (Type check passed).
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_open' on 'silver/stg_price_daily' passed.
+63 of 135 START test stg_price_ohlc_consistent ................................. [RUN]
+60 of 135 PASS not_null_stg_price_daily_symbol ................................. [[32mPASS[0m in 0.83s]
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_symbol' on 'silver/stg_price_daily' passed.
+64 of 135 START test stg_price_positive ........................................ [RUN]
+61 of 135 PASS not_null_stg_price_daily_trade_date ............................. [[32mPASS[0m in 0.81s]
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_trade_date" of type "Any". (Type check passed).
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_trade_date' on 'silver/stg_price_daily' passed.
+65 of 135 START test stg_price_volume_non_negative ............................. [RUN]
+62 of 135 PASS not_null_stg_price_daily_volume ................................. [[32mPASS[0m in 0.88s]
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_not_null_stg_price_daily_volume" of type "Any". (Type check passed).
+2026-11-13 09:30:25 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_price_daily_volume' on 'silver/stg_price_daily' passed.
+66 of 135 START test unique_combination_stg_price_daily_symbol__trade_date ..... [RUN]
+63 of 135 PASS stg_price_ohlc_consistent ....................................... [[32mPASS[0m in 1.03s]
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_stg_price_ohlc_consistent" of type "Any". (Type check passed).
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'stg_price_ohlc_consistent' on 'silver/stg_price_daily' passed.
+67 of 135 START test not_null_stg_index_daily_close ............................ [RUN]
+64 of 135 PASS stg_price_positive .............................................. [[32mPASS[0m in 0.98s]
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_stg_price_positive" of type "Any". (Type check passed).
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'stg_price_positive' on 'silver/stg_price_daily' passed.
+68 of 135 START test not_null_stg_index_daily_index_code ....................... [RUN]
+65 of 135 PASS stg_price_volume_non_negative ................................... [[32mPASS[0m in 0.95s]
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_stg_price_volume_non_negative" of type "Any". (Type check passed).
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'stg_price_volume_non_negative' on 'silver/stg_price_daily' passed.
+69 of 135 START test not_null_stg_index_daily_trade_date ....................... [RUN]
+66 of 135 PASS unique_combination_stg_price_daily_symbol__trade_date ........... [[32mPASS[0m in 0.90s]
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_price_daily_unique_combination_stg_price_daily_symbol__trade_date" of type "Any". (Type check passed).
+2026-11-13 09:30:26 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_stg_price_daily_symbol__trade_date' on 'silver/stg_price_daily' passed.
+70 of 135 START test stg_index_ohlc_consistent ................................. [RUN]
+68 of 135 PASS not_null_stg_index_daily_index_code ............................. [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_index_daily_not_null_stg_index_daily_index_code" of type "Any". (Type check passed).
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_index_daily_index_code' on 'silver/stg_index_daily' passed.
+71 of 135 START test stg_index_positive ........................................ [RUN]
+69 of 135 PASS not_null_stg_index_daily_trade_date ............................. [[32mPASS[0m in 1.01s]
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_index_daily_not_null_stg_index_daily_trade_date" of type "Any". (Type check passed).
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_index_daily_trade_date' on 'silver/stg_index_daily' passed.
+72 of 135 START test unique_combination_stg_index_daily_index_code__trade_date . [RUN]
+67 of 135 PASS not_null_stg_index_daily_close .................................. [[32mPASS[0m in 1.17s]
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_index_daily_not_null_stg_index_daily_close" of type "Any". (Type check passed).
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_stg_index_daily_close' on 'silver/stg_index_daily' passed.
+73 of 135 START sql table model gold.dim_ticker ................................ [RUN]
+70 of 135 WARN 1 stg_index_ohlc_consistent ..................................... [[33mWARN 1[0m in 0.95s]
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_index_daily_stg_index_ohlc_consistent" of type "Any". (Type check passed).
+2026-11-13 09:30:27 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'stg_index_ohlc_consistent' on 'silver/stg_index_daily' did not pass.
+71 of 135 PASS stg_index_positive .............................................. [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:28 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_index_daily_stg_index_positive" of type "Any". (Type check passed).
+2026-11-13 09:30:28 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'stg_index_positive' on 'silver/stg_index_daily' passed.
+72 of 135 PASS unique_combination_stg_index_daily_index_code__trade_date ....... [[32mPASS[0m in 1.07s]
+2026-11-13 09:30:28 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__stg_index_daily_unique_combination_stg_index_daily_index_code__trade_date" of type "Any". (Type check passed).
+2026-11-13 09:30:28 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_stg_index_daily_index_code__trade_date' on 'silver/stg_index_daily' passed.
+75 of 135 START sql table model silver.dq_issue_log ............................ [RUN]
+76 of 135 START sql table model gold.fact_index_daily .......................... [RUN]
+74 of 135 START sql table model gold.dim_date .................................. [RUN]
+73 of 135 OK created sql table model gold.dim_ticker ........................... [[32mCREATE TABLE (40.0 rows, 815.9 KiB processed)[0m in 2.03s]
+2026-11-13 09:30:29 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_ticker" of type "Nothing". (Type check passed).
+2026-11-13 09:30:29 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold dim_ticker.
+77 of 135 START test accepted_values_dim_ticker_financial_template__bank__securities__corporate  [RUN]
+77 of 135 PASS accepted_values_dim_ticker_financial_template__bank__securities__corporate  [[32mPASS[0m in 0.96s]
+2026-11-13 09:30:30 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_ticker_accepted_values_dim_ticker_financial_template__bank__securities__corporate" of type "Any". (Type check passed).
+2026-11-13 09:30:30 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_dim_ticker_financial_template__bank__securities__corporate' on 'gold/dim_ticker' passed.
+78 of 135 START test not_null_dim_ticker_symbol ................................ [RUN]
+74 of 135 OK created sql table model gold.dim_date ............................. [[32mCREATE TABLE (2.2k rows, 482.5 KiB processed)[0m in 2.06s]
+2026-11-13 09:30:30 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_date" of type "Nothing". (Type check passed).
+2026-11-13 09:30:30 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold dim_date.
+79 of 135 START test not_null_dim_ticker_ticker_key ............................ [RUN]
+76 of 135 OK created sql table model gold.fact_index_daily ..................... [[32mCREATE TABLE (1.0k rows, 76.2 KiB processed)[0m in 2.11s]
+2026-11-13 09:30:30 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_index_daily" of type "Nothing". (Type check passed).
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold fact_index_daily.
+80 of 135 START test unique_dim_ticker_symbol .................................. [RUN]
+75 of 135 OK created sql table model silver.dq_issue_log ....................... [[32mCREATE TABLE (135.0 rows, 2.5 MiB processed)[0m in 2.65s]
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__dq_issue_log" of type "Nothing". (Type check passed).
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value silver dq_issue_log.
+81 of 135 START test unique_dim_ticker_ticker_key .............................. [RUN]
+78 of 135 PASS not_null_dim_ticker_symbol ...................................... [[32mPASS[0m in 0.79s]
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_ticker_not_null_dim_ticker_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_dim_ticker_symbol' on 'gold/dim_ticker' passed.
+82 of 135 START test not_null_dim_date_date_key ................................ [RUN]
+79 of 135 PASS not_null_dim_ticker_ticker_key .................................. [[32mPASS[0m in 0.86s]
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_ticker_not_null_dim_ticker_ticker_key" of type "Any". (Type check passed).
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_dim_ticker_ticker_key' on 'gold/dim_ticker' passed.
+80 of 135 PASS unique_dim_ticker_symbol ........................................ [[32mPASS[0m in 0.82s]
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_ticker_unique_dim_ticker_symbol" of type "Any". (Type check passed).
+2026-11-13 09:30:31 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_dim_ticker_symbol' on 'gold/dim_ticker' passed.
+83 of 135 START test not_null_dim_date_full_date ............................... [RUN]
+84 of 135 START test unique_dim_date_date_key .................................. [RUN]
+81 of 135 PASS unique_dim_ticker_ticker_key .................................... [[32mPASS[0m in 0.93s]
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_ticker_unique_dim_ticker_ticker_key" of type "Any". (Type check passed).
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_dim_ticker_ticker_key' on 'gold/dim_ticker' passed.
+85 of 135 START test unique_dim_date_full_date ................................. [RUN]
+82 of 135 PASS not_null_dim_date_date_key ...................................... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_date_not_null_dim_date_date_key" of type "Any". (Type check passed).
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_dim_date_date_key' on 'gold/dim_date' passed.
+86 of 135 START test not_null_fact_index_daily_date_key ........................ [RUN]
+84 of 135 PASS unique_dim_date_date_key ........................................ [[32mPASS[0m in 0.87s]
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_date_unique_dim_date_date_key" of type "Any". (Type check passed).
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_dim_date_date_key' on 'gold/dim_date' passed.
+87 of 135 START test not_null_fact_index_daily_index_code ...................... [RUN]
+83 of 135 PASS not_null_dim_date_full_date ..................................... [[32mPASS[0m in 1.02s]
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_date_not_null_dim_date_full_date" of type "Any". (Type check passed).
+2026-11-13 09:30:32 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_dim_date_full_date' on 'gold/dim_date' passed.
+88 of 135 START test relationships_fact_index_daily_date_key__date_key__ref_dim_date_  [RUN]
+85 of 135 PASS unique_dim_date_full_date ....................................... [[32mPASS[0m in 0.72s]
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__dim_date_unique_dim_date_full_date" of type "Any". (Type check passed).
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_dim_date_full_date' on 'gold/dim_date' passed.
+89 of 135 START test unique_combination_fact_index_daily_index_code__date_key .. [RUN]
+86 of 135 PASS not_null_fact_index_daily_date_key .............................. [[32mPASS[0m in 0.98s]
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_index_daily_not_null_fact_index_daily_date_key" of type "Any". (Type check passed).
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_fact_index_daily_date_key' on 'gold/fact_index_daily' passed.
+90 of 135 START test accepted_values_dq_issue_log_severity__error__warn__info .. [RUN]
+87 of 135 PASS not_null_fact_index_daily_index_code ............................ [[32mPASS[0m in 0.90s]
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_index_daily_not_null_fact_index_daily_index_code" of type "Any". (Type check passed).
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_fact_index_daily_index_code' on 'gold/fact_index_daily' passed.
+91 of 135 START test not_null_dq_issue_log_issue_key ........................... [RUN]
+88 of 135 PASS relationships_fact_index_daily_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 0.78s]
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_index_daily_relationships_fact_index_daily_date_key__date_key__ref_dim_date_" of type "Any". (Type check passed).
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'relationships_fact_index_daily_date_key__date_key__ref_dim_date_' on 'gold/fact_index_daily' passed.
+92 of 135 START test unique_dq_issue_log_issue_key ............................. [RUN]
+89 of 135 PASS unique_combination_fact_index_daily_index_code__date_key ........ [[32mPASS[0m in 0.94s]
+2026-11-13 09:30:33 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_index_daily_unique_combination_fact_index_daily_index_code__date_key" of type "Any". (Type check passed).
+2026-11-13 09:30:34 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_fact_index_daily_index_code__date_key' on 'gold/fact_index_daily' passed.
+93 of 135 START sql table model gold.fact_financial_metric ..................... [RUN]
+91 of 135 PASS not_null_dq_issue_log_issue_key ................................. [[32mPASS[0m in 1.03s]
+2026-11-13 09:30:34 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__dq_issue_log_not_null_dq_issue_log_issue_key" of type "Any". (Type check passed).
+2026-11-13 09:30:34 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_dq_issue_log_issue_key' on 'silver/dq_issue_log' passed.
+92 of 135 PASS unique_dq_issue_log_issue_key ................................... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:34 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__dq_issue_log_unique_dq_issue_log_issue_key" of type "Any". (Type check passed).
+2026-11-13 09:30:34 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_dq_issue_log_issue_key' on 'silver/dq_issue_log' passed.
+90 of 135 PASS accepted_values_dq_issue_log_severity__error__warn__info ........ [[32mPASS[0m in 1.07s]
+2026-11-13 09:30:34 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "silver__dq_issue_log_accepted_values_dq_issue_log_severity__error__warn__info" of type "Any". (Type check passed).
+2026-11-13 09:30:34 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_dq_issue_log_severity__error__warn__info' on 'silver/dq_issue_log' passed.
+94 of 135 START sql table model gold.fact_price_daily .......................... [RUN]
+95 of 135 START sql table model gold.mart_pipeline_health ...................... [RUN]
+93 of 135 OK created sql table model gold.fact_financial_metric ................ [[32mCREATE TABLE (2.6k rows, 442.0 KiB processed)[0m in 1.80s]
+2026-11-13 09:30:35 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric" of type "Nothing". (Type check passed).
+2026-11-13 09:30:35 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold fact_financial_metric.
+96 of 135 START test accepted_values_fact_financial_metric_report_type__income_statement__balance_sheet__cash_flow  [RUN]
+97 of 135 START test not_null_fact_financial_metric_financial_metric_key ....... [RUN]
+96 of 135 PASS accepted_values_fact_financial_metric_report_type__income_statement__balance_sheet__cash_flow  [[32mPASS[0m in 0.78s]
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_accepted_values_fact_financial_metric_report_type__income_statement__balance_sheet__cash_flow" of type "Any". (Type check passed).
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_fact_financial_metric_report_type__income_statement__balance_sheet__cash_flow' on 'gold/fact_financial_metric' passed.
+98 of 135 START test not_null_fact_financial_metric_period_end_date_key ........ [RUN]
+94 of 135 OK created sql table model gold.fact_price_daily ..................... [[32mCREATE TABLE (58.1k rows, 4.1 MiB processed)[0m in 2.10s]
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_price_daily" of type "Nothing". (Type check passed).
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold fact_price_daily.
+99 of 135 START test not_null_fact_financial_metric_ticker_key ................. [RUN]
+97 of 135 PASS not_null_fact_financial_metric_financial_metric_key ............. [[32mPASS[0m in 0.98s]
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_not_null_fact_financial_metric_financial_metric_key" of type "Any". (Type check passed).
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_fact_financial_metric_financial_metric_key' on 'gold/fact_financial_metric' passed.
+100 of 135 START test relationships_fact_financial_metric_period_end_date_key__date_key__ref_dim_date_  [RUN]
+95 of 135 OK created sql table model gold.mart_pipeline_health ................. [[32mCREATE TABLE (6.0 rows, 801.0 KiB processed)[0m in 2.39s]
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_pipeline_health" of type "Nothing". (Type check passed).
+2026-11-13 09:30:36 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold mart_pipeline_health.
+101 of 135 START test relationships_fact_financial_metric_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+98 of 135 PASS not_null_fact_financial_metric_period_end_date_key .............. [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_not_null_fact_financial_metric_period_end_date_key" of type "Any". (Type check passed).
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_fact_financial_metric_period_end_date_key' on 'gold/fact_financial_metric' passed.
+102 of 135 START test unique_combination_fact_financial_metric_ticker_key__period__report_type__metric_id  [RUN]
+99 of 135 PASS not_null_fact_financial_metric_ticker_key ....................... [[32mPASS[0m in 0.97s]
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_not_null_fact_financial_metric_ticker_key" of type "Any". (Type check passed).
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_fact_financial_metric_ticker_key' on 'gold/fact_financial_metric' passed.
+103 of 135 START test unique_fact_financial_metric_financial_metric_key ........ [RUN]
+100 of 135 PASS relationships_fact_financial_metric_period_end_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 0.82s]
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_relationships_fact_financial_metric_period_end_date_key__date_key__ref_dim_date_" of type "Any". (Type check passed).
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'relationships_fact_financial_metric_period_end_date_key__date_key__ref_dim_date_' on 'gold/fact_financial_metric' passed.
+104 of 135 START test not_null_fact_price_daily_date_key ....................... [RUN]
+101 of 135 PASS relationships_fact_financial_metric_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 0.96s]
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_relationships_fact_financial_metric_ticker_key__ticker_key__ref_dim_ticker_" of type "Any". (Type check passed).
+2026-11-13 09:30:37 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'relationships_fact_financial_metric_ticker_key__ticker_key__ref_dim_ticker_' on 'gold/fact_financial_metric' passed.
+105 of 135 START test not_null_fact_price_daily_ticker_key ..................... [RUN]
+103 of 135 PASS unique_fact_financial_metric_financial_metric_key .............. [[32mPASS[0m in 0.86s]
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_unique_fact_financial_metric_financial_metric_key" of type "Any". (Type check passed).
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_fact_financial_metric_financial_metric_key' on 'gold/fact_financial_metric' passed.
+106 of 135 START test relationships_fact_price_daily_date_key__date_key__ref_dim_date_  [RUN]
+104 of 135 PASS not_null_fact_price_daily_date_key ............................. [[32mPASS[0m in 0.95s]
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_price_daily_not_null_fact_price_daily_date_key" of type "Any". (Type check passed).
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_fact_price_daily_date_key' on 'gold/fact_price_daily' passed.
+107 of 135 START test relationships_fact_price_daily_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+102 of 135 PASS unique_combination_fact_financial_metric_ticker_key__period__report_type__metric_id  [[32mPASS[0m in 1.07s]
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_financial_metric_unique_combination_fact_financial_metric_ticker_key__period__report_type__metric_id" of type "Any". (Type check passed).
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_fact_financial_metric_ticker_key__period__report_type__metric_id' on 'gold/fact_financial_metric' passed.
+108 of 135 START test unique_combination_fact_price_daily_ticker_key__date_key . [RUN]
+105 of 135 PASS not_null_fact_price_daily_ticker_key ........................... [[32mPASS[0m in 0.72s]
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_price_daily_not_null_fact_price_daily_ticker_key" of type "Any". (Type check passed).
+2026-11-13 09:30:38 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_fact_price_daily_ticker_key' on 'gold/fact_price_daily' passed.
+109 of 135 START test accepted_values_mart_pipeline_health_status__OK__WARN__FAIL  [RUN]
+106 of 135 PASS relationships_fact_price_daily_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 0.88s]
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_price_daily_relationships_fact_price_daily_date_key__date_key__ref_dim_date_" of type "Any". (Type check passed).
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'relationships_fact_price_daily_date_key__date_key__ref_dim_date_' on 'gold/fact_price_daily' passed.
+110 of 135 START test not_null_mart_pipeline_health_bronze_table ............... [RUN]
+109 of 135 PASS accepted_values_mart_pipeline_health_status__OK__WARN__FAIL .... [[32mPASS[0m in 0.83s]
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_pipeline_health_accepted_values_mart_pipeline_health_status__OK__WARN__FAIL" of type "Any". (Type check passed).
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_mart_pipeline_health_status__OK__WARN__FAIL' on 'gold/mart_pipeline_health' passed.
+111 of 135 START test pipeline_health_bronze_reconciled ........................ [RUN]
+107 of 135 PASS relationships_fact_price_daily_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 1.05s]
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_price_daily_relationships_fact_price_daily_ticker_key__ticker_key__ref_dim_ticker_" of type "Any". (Type check passed).
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'relationships_fact_price_daily_ticker_key__ticker_key__ref_dim_ticker_' on 'gold/fact_price_daily' passed.
+112 of 135 START test unique_mart_pipeline_health_bronze_table ................. [RUN]
+108 of 135 PASS unique_combination_fact_price_daily_ticker_key__date_key ....... [[32mPASS[0m in 1.06s]
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__fact_price_daily_unique_combination_fact_price_daily_ticker_key__date_key" of type "Any". (Type check passed).
+2026-11-13 09:30:39 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_fact_price_daily_ticker_key__date_key' on 'gold/fact_price_daily' passed.
+113 of 135 START sql table model gold.mart_financial_summary ................... [RUN]
+110 of 135 PASS not_null_mart_pipeline_health_bronze_table ..................... [[32mPASS[0m in 0.68s]
+2026-11-13 09:30:40 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_pipeline_health_not_null_mart_pipeline_health_bronze_table" of type "Any". (Type check passed).
+2026-11-13 09:30:40 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_pipeline_health_bronze_table' on 'gold/mart_pipeline_health' passed.
+114 of 135 START sql table model gold.mart_technical_indicators ................ [RUN]
+111 of 135 PASS pipeline_health_bronze_reconciled .............................. [[32mPASS[0m in 0.73s]
+2026-11-13 09:30:40 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_pipeline_health_pipeline_health_bronze_reconciled" of type "Any". (Type check passed).
+2026-11-13 09:30:40 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'pipeline_health_bronze_reconciled' on 'gold/mart_pipeline_health' passed.
+112 of 135 PASS unique_mart_pipeline_health_bronze_table ....................... [[32mPASS[0m in 1.03s]
+2026-11-13 09:30:40 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_pipeline_health_unique_mart_pipeline_health_bronze_table" of type "Any". (Type check passed).
+2026-11-13 09:30:40 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_mart_pipeline_health_bronze_table' on 'gold/mart_pipeline_health' passed.
+113 of 135 OK created sql table model gold.mart_financial_summary .............. [[32mCREATE TABLE (60.0 rows, 299.1 KiB processed)[0m in 2.34s]
+2026-11-13 09:30:42 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_financial_summary" of type "Nothing". (Type check passed).
+2026-11-13 09:30:42 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold mart_financial_summary.
+115 of 135 START test not_null_mart_financial_summary_equity ................... [RUN]
+116 of 135 START test not_null_mart_financial_summary_net_profit_after_tax ..... [RUN]
+117 of 135 START test not_null_mart_financial_summary_ticker_key ............... [RUN]
+114 of 135 OK created sql table model gold.mart_technical_indicators ........... [[32mCREATE TABLE (58.1k rows, 3.9 MiB processed)[0m in 2.35s]
+2026-11-13 09:30:42 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_technical_indicators" of type "Nothing". (Type check passed).
+2026-11-13 09:30:42 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold mart_technical_indicators.
+118 of 135 START test relationships_mart_financial_summary_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+117 of 135 PASS not_null_mart_financial_summary_ticker_key ..................... [[32mPASS[0m in 0.88s]
+2026-11-13 09:30:42 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_financial_summary_not_null_mart_financial_summary_ticker_key" of type "Any". (Type check passed).
+2026-11-13 09:30:42 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_financial_summary_ticker_key' on 'gold/mart_financial_summary' passed.
+119 of 135 START test unique_combination_mart_financial_summary_symbol__period . [RUN]
+116 of 135 PASS not_null_mart_financial_summary_net_profit_after_tax ........... [[32mPASS[0m in 1.12s]
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_financial_summary_not_null_mart_financial_summary_net_profit_after_tax" of type "Any". (Type check passed).
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_financial_summary_net_profit_after_tax' on 'gold/mart_financial_summary' passed.
+120 of 135 START test mart_technical_drawdown_non_positive ..................... [RUN]
+115 of 135 PASS not_null_mart_financial_summary_equity ......................... [[32mPASS[0m in 1.14s]
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_financial_summary_not_null_mart_financial_summary_equity" of type "Any". (Type check passed).
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_financial_summary_equity' on 'gold/mart_financial_summary' passed.
+121 of 135 START test mart_technical_rsi_in_range .............................. [RUN]
+118 of 135 PASS relationships_mart_financial_summary_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 0.88s]
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_financial_summary_relationships_mart_financial_summary_ticker_key__ticker_key__ref_dim_ticker_" of type "Any". (Type check passed).
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'relationships_mart_financial_summary_ticker_key__ticker_key__ref_dim_ticker_' on 'gold/mart_financial_summary' passed.
+122 of 135 START test mart_technical_sma_within_price_range .................... [RUN]
+119 of 135 PASS unique_combination_mart_financial_summary_symbol__period ....... [[32mPASS[0m in 0.71s]
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_financial_summary_unique_combination_mart_financial_summary_symbol__period" of type "Any". (Type check passed).
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_mart_financial_summary_symbol__period' on 'gold/mart_financial_summary' passed.
+123 of 135 START test not_null_mart_technical_indicators_ticker_key ............ [RUN]
+120 of 135 PASS mart_technical_drawdown_non_positive ........................... [[32mPASS[0m in 0.80s]
+2026-11-13 09:30:43 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_technical_indicators_mart_technical_drawdown_non_positive" of type "Any". (Type check passed).
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'mart_technical_drawdown_non_positive' on 'gold/mart_technical_indicators' passed.
+124 of 135 START test relationships_mart_technical_indicators_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+121 of 135 PASS mart_technical_rsi_in_range .................................... [[32mPASS[0m in 0.85s]
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_technical_indicators_mart_technical_rsi_in_range" of type "Any". (Type check passed).
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'mart_technical_rsi_in_range' on 'gold/mart_technical_indicators' passed.
+125 of 135 START test unique_combination_mart_technical_indicators_symbol__trade_date  [RUN]
+122 of 135 PASS mart_technical_sma_within_price_range .......................... [[32mPASS[0m in 0.96s]
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_technical_indicators_mart_technical_sma_within_price_range" of type "Any". (Type check passed).
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'mart_technical_sma_within_price_range' on 'gold/mart_technical_indicators' passed.
+123 of 135 PASS not_null_mart_technical_indicators_ticker_key .................. [[32mPASS[0m in 0.82s]
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_technical_indicators_not_null_mart_technical_indicators_ticker_key" of type "Any". (Type check passed).
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_technical_indicators_ticker_key' on 'gold/mart_technical_indicators' passed.
+124 of 135 PASS relationships_mart_technical_indicators_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 0.90s]
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_technical_indicators_relationships_mart_technical_indicators_ticker_key__ticker_key__ref_dim_ticker_" of type "Any". (Type check passed).
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'relationships_mart_technical_indicators_ticker_key__ticker_key__ref_dim_ticker_' on 'gold/mart_technical_indicators' passed.
+125 of 135 PASS unique_combination_mart_technical_indicators_symbol__trade_date  [[32mPASS[0m in 0.94s]
+2026-11-13 09:30:44 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_technical_indicators_unique_combination_mart_technical_indicators_symbol__trade_date" of type "Any". (Type check passed).
+2026-11-13 09:30:45 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_mart_technical_indicators_symbol__trade_date' on 'gold/mart_technical_indicators' passed.
+126 of 135 START sql table model gold.mart_stock_alerts ........................ [RUN]
+127 of 135 START sql table model gold.mart_stock_vs_index ...................... [RUN]
+127 of 135 OK created sql table model gold.mart_stock_vs_index ................. [[32mCREATE TABLE (40.0k rows, 4.0 MiB processed)[0m in 2.31s]
+2026-11-13 09:30:47 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_vs_index" of type "Nothing". (Type check passed).
+2026-11-13 09:30:47 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold mart_stock_vs_index.
+128 of 135 START test mart_stock_vs_index_within_common_range .................. [RUN]
+130 of 135 START test unique_combination_mart_stock_vs_index_symbol__index_code__trade_date  [RUN]
+129 of 135 START test not_null_mart_stock_vs_index_index_close ................. [RUN]
+126 of 135 OK created sql table model gold.mart_stock_alerts ................... [[32mCREATE TABLE (10.9k rows, 6.6 MiB processed)[0m in 2.55s]
+2026-11-13 09:30:47 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_alerts" of type "Nothing". (Type check passed).
+2026-11-13 09:30:47 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_MATERIALIZATION - Materialized value gold mart_stock_alerts.
+131 of 135 START test accepted_values_mart_stock_alerts_rule_code__GOLDEN_CROSS__DEATH_CROSS__RSI_OVERBOUGHT__RSI_OVERSOLD__VOLUME_SPIKE__LARGE_MOVE_UP__LARGE_MOVE_DOWN__DEEP_DRAWDOWN  [RUN]
+129 of 135 PASS not_null_mart_stock_vs_index_index_close ....................... [[32mPASS[0m in 0.88s]
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_vs_index_not_null_mart_stock_vs_index_index_close" of type "Any". (Type check passed).
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_stock_vs_index_index_close' on 'gold/mart_stock_vs_index' passed.
+132 of 135 START test accepted_values_mart_stock_alerts_signal__bullish__bearish__neutral  [RUN]
+131 of 135 PASS accepted_values_mart_stock_alerts_rule_code__GOLDEN_CROSS__DEATH_CROSS__RSI_OVERBOUGHT__RSI_OVERSOLD__VOLUME_SPIKE__LARGE_MOVE_UP__LARGE_MOVE_DOWN__DEEP_DRAWDOWN  [[32mPASS[0m in 0.87s]
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_alerts_accepted_values_mart_stock_alerts_rule_code__GOLDEN_CROSS__DEATH_CROSS__RSI_OVERBOUGHT__RSI_OVERSOLD__VOLUME_SPIKE__LARGE_MOVE_UP__LARGE_MOVE_DOWN__DEEP_DRAWDOWN" of type "Any". (Type check passed).
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_mart_stock_alerts_rule_code__GOLDEN_CROSS__DEATH_CROSS__RSI_OVERBOUGHT__RSI_OVERSOLD__VOLUME_SPIKE__LARGE_MOVE_UP__LARGE_MOVE_DOWN__DEEP_DRAWDOWN' on 'gold/mart_stock_alerts' passed.
+133 of 135 START test not_null_mart_stock_alerts_alert_key ..................... [RUN]
+128 of 135 PASS mart_stock_vs_index_within_common_range ........................ [[32mPASS[0m in 1.13s]
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_vs_index_mart_stock_vs_index_within_common_range" of type "Any". (Type check passed).
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'mart_stock_vs_index_within_common_range' on 'gold/mart_stock_vs_index' passed.
+134 of 135 START test not_null_mart_stock_alerts_reason ........................ [RUN]
+130 of 135 PASS unique_combination_mart_stock_vs_index_symbol__index_code__trade_date  [[32mPASS[0m in 1.19s]
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_vs_index_unique_combination_mart_stock_vs_index_symbol__index_code__trade_date" of type "Any". (Type check passed).
+2026-11-13 09:30:48 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_combination_mart_stock_vs_index_symbol__index_code__trade_date' on 'gold/mart_stock_vs_index' passed.
+135 of 135 START test unique_mart_stock_alerts_alert_key ....................... [RUN]
+133 of 135 PASS not_null_mart_stock_alerts_alert_key ........................... [[32mPASS[0m in 0.88s]
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_alerts_not_null_mart_stock_alerts_alert_key" of type "Any". (Type check passed).
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_stock_alerts_alert_key' on 'gold/mart_stock_alerts' passed.
+132 of 135 PASS accepted_values_mart_stock_alerts_signal__bullish__bearish__neutral  [[32mPASS[0m in 1.13s]
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_alerts_accepted_values_mart_stock_alerts_signal__bullish__bearish__neutral" of type "Any". (Type check passed).
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'accepted_values_mart_stock_alerts_signal__bullish__bearish__neutral' on 'gold/mart_stock_alerts' passed.
+134 of 135 PASS not_null_mart_stock_alerts_reason .............................. [[32mPASS[0m in 0.93s]
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_alerts_not_null_mart_stock_alerts_reason" of type "Any". (Type check passed).
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'not_null_mart_stock_alerts_reason' on 'gold/mart_stock_alerts' passed.
+135 of 135 PASS unique_mart_stock_alerts_alert_key ............................. [[32mPASS[0m in 0.98s]
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_OUTPUT - Yielded output "gold__mart_stock_alerts_unique_mart_stock_alerts_alert_key" of type "Any". (Type check passed).
+2026-11-13 09:30:49 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - ASSET_CHECK_EVALUATION - Asset check 'unique_mart_stock_alerts_alert_key' on 'gold/mart_stock_alerts' passed.
+
+Finished running 17 table models, 118 data tests in 0 hours 0 minutes and 42.33 seconds (42.33s).
+
+[33mCompleted with 1 warning:[0m
+
+[[33mWARNING[0m]: in test stg_index_ohlc_consistent (models\silver\_silver.yml)
+[[33mWARNING[0m]: Got 1 result, configured to warn if != 0
+
+  compiled code at target\medallion_dbt_assets-dbc547b-9d453a0\compiled\vnstock_medallion\models\silver\_silver.yml\stg_index_ohlc_consistent.sql
+
+Done. PASS=134 WARN=1 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=135
+2026-11-13 09:30:50 +0700 - dagster - INFO - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - medallion_dbt_assets - Finished dbt command: `D:\DW_Nhom10\DW_Nhom10\vnstock-medallion-warehouse\.venv\Scripts\dbt.exe build --select fqn:*`.
+2026-11-13 09:30:50 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 21604 - medallion_dbt_assets - STEP_SUCCESS - Finished execution of step "medallion_dbt_assets" in 56.79s.
+2026-11-13 09:30:51 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - ENGINE_EVENT - Multiprocess executor: parent process exiting after 1m45s (pid: 10748)
+2026-11-13 09:30:51 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - RUN_SUCCESS - Finished execution of run for "initial_load_job".
+2026-11-13 09:30:51 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - RESOURCE_INIT_STARTED - Starting initialization of resources [dbt, io_manager].
+2026-11-13 09:30:51 +0700 - dagster - DEBUG - initial_load_job - dbc547be-9e1c-4099-9a27-ba82d9ca9c78 - 10748 - RESOURCE_INIT_SUCCESS - Finished initialization of resources [dbt, io_manager].

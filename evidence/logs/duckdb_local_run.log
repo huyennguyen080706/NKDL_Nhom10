@@ -1,0 +1,359 @@
+=== [1/3] BRONZE: nạp extract Parquet + audit ===
+        batch_id         target_table  datasets  loaded  manifest_rows  bronze_rows  mismatched
+initial_20261103    balance_sheet_raw        15      15           1160         1160           0
+initial_20261103        cash_flow_raw        15      15            420          420           0
+initial_20261103 company_overview_raw        40      40             40           40           0
+initial_20261103 income_statement_raw        15      15           1064         1064           0
+initial_20261103      index_daily_raw         1       1           1000         1000           0
+initial_20261103      price_daily_raw        40      40          58114        58114           0
+
+Tổng: 126 extract | manifest 61,798 dòng | Bronze 61,798 dòng
+Đối soát Bronze: KHỚP 100% với manifest.
+
+=== [2/3] SILVER + GOLD: dbt build (model + test theo thứ tự phụ thuộc) ===
+
+$ dbt build
+[0m02:23:50  Running with dbt=1.12.7
+[0m02:23:51  Registered adapter: duckdb=1.11.1
+[0m02:23:51  Unable to do partial parsing because profile has changed
+[0m02:23:53  Found 17 models, 118 data tests, 7 sources, 524 macros
+[0m02:23:53  
+[0m02:23:53  Concurrency: 4 threads (target='local')
+[0m02:23:53  
+[0m02:23:53  2 of 135 START test bronze_audit_row_counts_match_manifest ..................... [RUN]
+[0m02:23:53  3 of 135 START test source_not_null_bronze_balance_sheet_raw__batch_id ......... [RUN]
+[0m02:23:53  4 of 135 START test source_not_null_bronze_balance_sheet_raw_symbol ............ [RUN]
+[0m02:23:53  1 of 135 START test bronze_audit_all_extracts_loaded ........................... [RUN]
+[0m02:23:53  2 of 135 PASS bronze_audit_row_counts_match_manifest ........................... [[32mPASS[0m in 0.10s]
+[0m02:23:53  1 of 135 PASS bronze_audit_all_extracts_loaded ................................. [[32mPASS[0m in 0.09s]
+[0m02:23:53  3 of 135 PASS source_not_null_bronze_balance_sheet_raw__batch_id ............... [[32mPASS[0m in 0.10s]
+[0m02:23:53  4 of 135 PASS source_not_null_bronze_balance_sheet_raw_symbol .................. [[32mPASS[0m in 0.10s]
+[0m02:23:53  5 of 135 START test source_not_null_bronze_cash_flow_raw__batch_id ............. [RUN]
+[0m02:23:53  6 of 135 START test source_not_null_bronze_cash_flow_raw_symbol ................ [RUN]
+[0m02:23:53  7 of 135 START test source_not_null_bronze_company_overview_raw__batch_id ...... [RUN]
+[0m02:23:53  8 of 135 START test source_not_null_bronze_company_overview_raw_symbol ......... [RUN]
+[0m02:23:53  5 of 135 PASS source_not_null_bronze_cash_flow_raw__batch_id ................... [[32mPASS[0m in 0.06s]
+[0m02:23:53  6 of 135 PASS source_not_null_bronze_cash_flow_raw_symbol ...................... [[32mPASS[0m in 0.05s]
+[0m02:23:53  7 of 135 PASS source_not_null_bronze_company_overview_raw__batch_id ............ [[32mPASS[0m in 0.06s]
+[0m02:23:53  9 of 135 START test source_not_null_bronze_income_statement_raw__batch_id ...... [RUN]
+[0m02:23:53  10 of 135 START test source_not_null_bronze_income_statement_raw_symbol ........ [RUN]
+[0m02:23:53  8 of 135 PASS source_not_null_bronze_company_overview_raw_symbol ............... [[32mPASS[0m in 0.05s]
+[0m02:23:53  11 of 135 START test source_not_null_bronze_index_daily_raw__batch_id .......... [RUN]
+[0m02:23:53  12 of 135 START test source_not_null_bronze_index_daily_raw_symbol ............. [RUN]
+[0m02:23:53  11 of 135 PASS source_not_null_bronze_index_daily_raw__batch_id ................ [[32mPASS[0m in 0.05s]
+[0m02:23:53  13 of 135 START test source_not_null_bronze_price_daily_raw__batch_id .......... [RUN]
+[0m02:23:53  10 of 135 PASS source_not_null_bronze_income_statement_raw_symbol .............. [[32mPASS[0m in 0.06s]
+[0m02:23:53  9 of 135 PASS source_not_null_bronze_income_statement_raw__batch_id ............ [[32mPASS[0m in 0.06s]
+[0m02:23:53  12 of 135 PASS source_not_null_bronze_index_daily_raw_symbol ................... [[32mPASS[0m in 0.05s]
+[0m02:23:53  14 of 135 START test source_not_null_bronze_price_daily_raw_symbol ............. [RUN]
+[0m02:23:53  15 of 135 START test source_not_null_bronze_price_daily_raw_time ............... [RUN]
+[0m02:23:53  16 of 135 START test source_unique_combination_bronze_ingestion_audit_batch_id__dataset_key  [RUN]
+[0m02:23:54  13 of 135 PASS source_not_null_bronze_price_daily_raw__batch_id ................ [[32mPASS[0m in 0.08s]
+[0m02:23:54  17 of 135 START sql table model silver.stg_balance_sheet ....................... [RUN]
+[0m02:23:54  14 of 135 PASS source_not_null_bronze_price_daily_raw_symbol ................... [[32mPASS[0m in 0.09s]
+[0m02:23:54  15 of 135 PASS source_not_null_bronze_price_daily_raw_time ..................... [[32mPASS[0m in 0.09s]
+[0m02:23:54  18 of 135 START sql table model silver.stg_cash_flow ........................... [RUN]
+[0m02:23:54  19 of 135 START sql table model silver.stg_company ............................. [RUN]
+[0m02:23:54  16 of 135 PASS source_unique_combination_bronze_ingestion_audit_batch_id__dataset_key  [[32mPASS[0m in 0.10s]
+[0m02:23:54  20 of 135 START sql table model silver.stg_income_statement .................... [RUN]
+[0m02:23:54  17 of 135 OK created sql table model silver.stg_balance_sheet .................. [[32mOK[0m in 0.24s]
+[0m02:23:54  21 of 135 START sql table model silver.stg_index_daily ......................... [RUN]
+[0m02:23:54  20 of 135 OK created sql table model silver.stg_income_statement ............... [[32mOK[0m in 0.24s]
+[0m02:23:54  19 of 135 OK created sql table model silver.stg_company ........................ [[32mOK[0m in 0.25s]
+[0m02:23:54  22 of 135 START sql table model silver.stg_price_daily ......................... [RUN]
+[0m02:23:54  23 of 135 START test accepted_values_stg_balance_sheet_period_type__quarter__year  [RUN]
+[0m02:23:54  18 of 135 OK created sql table model silver.stg_cash_flow ...................... [[32mOK[0m in 0.27s]
+[0m02:23:54  24 of 135 START test expression_true_stg_balance_sheet_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [RUN]
+[0m02:23:54  23 of 135 PASS accepted_values_stg_balance_sheet_period_type__quarter__year .... [[32mPASS[0m in 0.05s]
+[0m02:23:54  25 of 135 START test expression_true_stg_balance_sheet_unit_VND_ ............... [RUN]
+[0m02:23:54  24 of 135 PASS expression_true_stg_balance_sheet_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [[32mPASS[0m in 0.05s]
+[0m02:23:54  26 of 135 START test not_null_stg_balance_sheet_metric_id ...................... [RUN]
+[0m02:23:54  21 of 135 OK created sql table model silver.stg_index_daily .................... [[32mOK[0m in 0.13s]
+[0m02:23:54  27 of 135 START test not_null_stg_balance_sheet_metric_name .................... [RUN]
+[0m02:23:54  25 of 135 PASS expression_true_stg_balance_sheet_unit_VND_ ..................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  28 of 135 START test not_null_stg_balance_sheet_period ......................... [RUN]
+[0m02:23:54  26 of 135 PASS not_null_stg_balance_sheet_metric_id ............................ [[32mPASS[0m in 0.06s]
+[0m02:23:54  29 of 135 START test not_null_stg_balance_sheet_period_end_date ................ [RUN]
+[0m02:23:54  27 of 135 PASS not_null_stg_balance_sheet_metric_name .......................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  30 of 135 START test not_null_stg_balance_sheet_symbol ......................... [RUN]
+[0m02:23:54  28 of 135 PASS not_null_stg_balance_sheet_period ............................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  29 of 135 PASS not_null_stg_balance_sheet_period_end_date ...................... [[32mPASS[0m in 0.05s]
+[0m02:23:54  31 of 135 START test unique_combination_stg_balance_sheet_symbol__period__metric_id  [RUN]
+[0m02:23:54  22 of 135 OK created sql table model silver.stg_price_daily .................... [[32mOK[0m in 0.20s]
+[0m02:23:54  32 of 135 START test accepted_values_stg_income_statement_period_type__quarter__year  [RUN]
+[0m02:23:54  33 of 135 START test expression_true_stg_income_statement_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [RUN]
+[0m02:23:54  30 of 135 PASS not_null_stg_balance_sheet_symbol ............................... [[32mPASS[0m in 0.14s]
+[0m02:23:54  34 of 135 START test expression_true_stg_income_statement_unit_VND_ ............ [RUN]
+[0m02:23:54  33 of 135 PASS expression_true_stg_income_statement_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [[32mPASS[0m in 0.14s]
+[0m02:23:54  32 of 135 PASS accepted_values_stg_income_statement_period_type__quarter__year . [[32mPASS[0m in 0.14s]
+[0m02:23:54  31 of 135 PASS unique_combination_stg_balance_sheet_symbol__period__metric_id .. [[32mPASS[0m in 0.15s]
+[0m02:23:54  35 of 135 START test not_null_stg_income_statement_metric_id ................... [RUN]
+[0m02:23:54  36 of 135 START test not_null_stg_income_statement_metric_name ................. [RUN]
+[0m02:23:54  37 of 135 START test not_null_stg_income_statement_period ...................... [RUN]
+[0m02:23:54  34 of 135 PASS expression_true_stg_income_statement_unit_VND_ .................. [[32mPASS[0m in 0.07s]
+[0m02:23:54  38 of 135 START test not_null_stg_income_statement_period_end_date ............. [RUN]
+[0m02:23:54  35 of 135 PASS not_null_stg_income_statement_metric_id ......................... [[32mPASS[0m in 0.05s]
+[0m02:23:54  36 of 135 PASS not_null_stg_income_statement_metric_name ....................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  39 of 135 START test not_null_stg_income_statement_symbol ...................... [RUN]
+[0m02:23:54  37 of 135 PASS not_null_stg_income_statement_period ............................ [[32mPASS[0m in 0.06s]
+[0m02:23:54  40 of 135 START test unique_combination_stg_income_statement_symbol__period__metric_id  [RUN]
+[0m02:23:54  41 of 135 START test accepted_values_stg_company_exchange__HOSE__HNX__UPCOM .... [RUN]
+[0m02:23:54  38 of 135 PASS not_null_stg_income_statement_period_end_date ................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  42 of 135 START test not_null_stg_company_exchange ............................. [RUN]
+[0m02:23:54  39 of 135 PASS not_null_stg_income_statement_symbol ............................ [[32mPASS[0m in 0.07s]
+[0m02:23:54  43 of 135 START test not_null_stg_company_listing_date ......................... [RUN]
+[0m02:23:54  40 of 135 PASS unique_combination_stg_income_statement_symbol__period__metric_id  [[32mPASS[0m in 0.09s]
+[0m02:23:54  41 of 135 PASS accepted_values_stg_company_exchange__HOSE__HNX__UPCOM .......... [[32mPASS[0m in 0.09s]
+[0m02:23:54  44 of 135 START test not_null_stg_company_symbol ............................... [RUN]
+[0m02:23:54  45 of 135 START test unique_stg_company_symbol ................................. [RUN]
+[0m02:23:54  42 of 135 PASS not_null_stg_company_exchange ................................... [[32mPASS[0m in 0.08s]
+[0m02:23:54  46 of 135 START test accepted_values_stg_cash_flow_period_type__quarter__year .. [RUN]
+[0m02:23:54  43 of 135 PASS not_null_stg_company_listing_date ............................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  47 of 135 START test expression_true_stg_cash_flow_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [RUN]
+[0m02:23:54  44 of 135 PASS not_null_stg_company_symbol ..................................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  45 of 135 PASS unique_stg_company_symbol ....................................... [[32mPASS[0m in 0.06s]
+[0m02:23:54  48 of 135 START test expression_true_stg_cash_flow_unit_VND_ ................... [RUN]
+[0m02:23:54  49 of 135 START test not_null_stg_cash_flow_metric_id .......................... [RUN]
+[0m02:23:54  46 of 135 PASS accepted_values_stg_cash_flow_period_type__quarter__year ........ [[32mPASS[0m in 0.07s]
+[0m02:23:54  50 of 135 START test not_null_stg_cash_flow_metric_name ........................ [RUN]
+[0m02:23:54  47 of 135 PASS expression_true_stg_cash_flow_fiscal_quarter_between_1_and_4_and_fiscal_year_between_2000_and_2100  [[32mPASS[0m in 0.06s]
+[0m02:23:54  51 of 135 START test not_null_stg_cash_flow_period ............................. [RUN]
+[0m02:23:54  48 of 135 PASS expression_true_stg_cash_flow_unit_VND_ ......................... [[32mPASS[0m in 0.09s]
+[0m02:23:55  49 of 135 PASS not_null_stg_cash_flow_metric_id ................................ [[32mPASS[0m in 0.10s]
+[0m02:23:55  52 of 135 START test not_null_stg_cash_flow_period_end_date .................... [RUN]
+[0m02:23:55  53 of 135 START test not_null_stg_cash_flow_symbol ............................. [RUN]
+[0m02:23:55  50 of 135 PASS not_null_stg_cash_flow_metric_name .............................. [[32mPASS[0m in 0.09s]
+[0m02:23:55  54 of 135 START test unique_combination_stg_cash_flow_symbol__period__metric_id  [RUN]
+[0m02:23:55  51 of 135 PASS not_null_stg_cash_flow_period ................................... [[32mPASS[0m in 0.08s]
+[0m02:23:55  55 of 135 START test not_null_stg_index_daily_close ............................ [RUN]
+[0m02:23:55  52 of 135 PASS not_null_stg_cash_flow_period_end_date .......................... [[32mPASS[0m in 0.06s]
+[0m02:23:55  53 of 135 PASS not_null_stg_cash_flow_symbol ................................... [[32mPASS[0m in 0.05s]
+[0m02:23:55  56 of 135 START test not_null_stg_index_daily_index_code ....................... [RUN]
+[0m02:23:55  57 of 135 START test not_null_stg_index_daily_trade_date ....................... [RUN]
+[0m02:23:55  54 of 135 PASS unique_combination_stg_cash_flow_symbol__period__metric_id ...... [[32mPASS[0m in 0.08s]
+[0m02:23:55  58 of 135 START test stg_index_ohlc_consistent ................................. [RUN]
+[0m02:23:55  55 of 135 PASS not_null_stg_index_daily_close .................................. [[32mPASS[0m in 0.07s]
+[0m02:23:55  59 of 135 START test stg_index_positive ........................................ [RUN]
+[0m02:23:55  56 of 135 PASS not_null_stg_index_daily_index_code ............................. [[32mPASS[0m in 0.10s]
+[0m02:23:55  57 of 135 PASS not_null_stg_index_daily_trade_date ............................. [[32mPASS[0m in 0.10s]
+[0m02:23:55  60 of 135 START test unique_combination_stg_index_daily_index_code__trade_date . [RUN]
+[0m02:23:55  61 of 135 START test not_null_stg_price_daily_batch_id ......................... [RUN]
+[0m02:23:55  58 of 135 WARN 1 stg_index_ohlc_consistent ..................................... [[33mWARN 1[0m in 0.08s]
+[0m02:23:55  62 of 135 START test not_null_stg_price_daily_close ............................ [RUN]
+[0m02:23:55  59 of 135 PASS stg_index_positive .............................................. [[32mPASS[0m in 0.09s]
+[0m02:23:55  63 of 135 START test not_null_stg_price_daily_high ............................. [RUN]
+[0m02:23:55  60 of 135 PASS unique_combination_stg_index_daily_index_code__trade_date ....... [[32mPASS[0m in 0.08s]
+[0m02:23:55  61 of 135 PASS not_null_stg_price_daily_batch_id ............................... [[32mPASS[0m in 0.08s]
+[0m02:23:55  64 of 135 START test not_null_stg_price_daily_low .............................. [RUN]
+[0m02:23:55  65 of 135 START test not_null_stg_price_daily_open ............................. [RUN]
+[0m02:23:55  62 of 135 PASS not_null_stg_price_daily_close .................................. [[32mPASS[0m in 0.10s]
+[0m02:23:55  66 of 135 START test not_null_stg_price_daily_symbol ........................... [RUN]
+[0m02:23:55  63 of 135 PASS not_null_stg_price_daily_high ................................... [[32mPASS[0m in 0.09s]
+[0m02:23:55  67 of 135 START test not_null_stg_price_daily_trade_date ....................... [RUN]
+[0m02:23:55  64 of 135 PASS not_null_stg_price_daily_low .................................... [[32mPASS[0m in 0.11s]
+[0m02:23:55  65 of 135 PASS not_null_stg_price_daily_open ................................... [[32mPASS[0m in 0.11s]
+[0m02:23:55  68 of 135 START test not_null_stg_price_daily_volume ........................... [RUN]
+[0m02:23:55  69 of 135 START test stg_price_ohlc_consistent ................................. [RUN]
+[0m02:23:55  66 of 135 PASS not_null_stg_price_daily_symbol ................................. [[32mPASS[0m in 0.11s]
+[0m02:23:55  67 of 135 PASS not_null_stg_price_daily_trade_date ............................. [[32mPASS[0m in 0.10s]
+[0m02:23:55  70 of 135 START test stg_price_positive ........................................ [RUN]
+[0m02:23:55  71 of 135 START test stg_price_volume_non_negative ............................. [RUN]
+[0m02:23:55  68 of 135 PASS not_null_stg_price_daily_volume ................................. [[32mPASS[0m in 0.09s]
+[0m02:23:55  72 of 135 START test unique_combination_stg_price_daily_symbol__trade_date ..... [RUN]
+[0m02:23:55  69 of 135 PASS stg_price_ohlc_consistent ....................................... [[32mPASS[0m in 0.11s]
+[0m02:23:55  70 of 135 PASS stg_price_positive .............................................. [[32mPASS[0m in 0.07s]
+[0m02:23:55  73 of 135 START sql table model gold.fact_index_daily .......................... [RUN]
+[0m02:23:55  71 of 135 PASS stg_price_volume_non_negative ................................... [[32mPASS[0m in 0.08s]
+[0m02:23:55  72 of 135 PASS unique_combination_stg_price_daily_symbol__trade_date ........... [[32mPASS[0m in 0.05s]
+[0m02:23:55  76 of 135 START sql table model silver.dq_issue_log ............................ [RUN]
+[0m02:23:55  74 of 135 START sql table model gold.dim_date .................................. [RUN]
+[0m02:23:55  75 of 135 START sql table model gold.dim_ticker ................................ [RUN]
+[0m02:23:55  73 of 135 OK created sql table model gold.fact_index_daily ..................... [[32mOK[0m in 0.09s]
+[0m02:23:55  77 of 135 START test not_null_fact_index_daily_date_key ........................ [RUN]
+[0m02:23:55  77 of 135 PASS not_null_fact_index_daily_date_key .............................. [[32mPASS[0m in 0.06s]
+[0m02:23:55  78 of 135 START test not_null_fact_index_daily_index_code ...................... [RUN]
+[0m02:23:55  74 of 135 OK created sql table model gold.dim_date ............................. [[32mOK[0m in 0.15s]
+[0m02:23:55  79 of 135 START test unique_combination_fact_index_daily_index_code__date_key .. [RUN]
+[0m02:23:55  75 of 135 OK created sql table model gold.dim_ticker ........................... [[32mOK[0m in 0.17s]
+[0m02:23:55  80 of 135 START test not_null_dim_date_date_key ................................ [RUN]
+[0m02:23:55  78 of 135 PASS not_null_fact_index_daily_index_code ............................ [[32mPASS[0m in 0.05s]
+[0m02:23:55  81 of 135 START test not_null_dim_date_full_date ............................... [RUN]
+[0m02:23:55  79 of 135 PASS unique_combination_fact_index_daily_index_code__date_key ........ [[32mPASS[0m in 0.06s]
+[0m02:23:55  82 of 135 START test relationships_fact_index_daily_date_key__date_key__ref_dim_date_  [RUN]
+[0m02:23:55  76 of 135 OK created sql table model silver.dq_issue_log ....................... [[32mOK[0m in 0.22s]
+[0m02:23:55  83 of 135 START test unique_dim_date_date_key .................................. [RUN]
+[0m02:23:55  80 of 135 PASS not_null_dim_date_date_key ...................................... [[32mPASS[0m in 0.06s]
+[0m02:23:55  84 of 135 START test unique_dim_date_full_date ................................. [RUN]
+[0m02:23:55  81 of 135 PASS not_null_dim_date_full_date ..................................... [[32mPASS[0m in 0.06s]
+[0m02:23:55  85 of 135 START test accepted_values_dim_ticker_financial_template__bank__securities__corporate  [RUN]
+[0m02:23:55  82 of 135 PASS relationships_fact_index_daily_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 0.07s]
+[0m02:23:55  86 of 135 START test not_null_dim_ticker_symbol ................................ [RUN]
+[0m02:23:55  83 of 135 PASS unique_dim_date_date_key ........................................ [[32mPASS[0m in 0.06s]
+[0m02:23:55  84 of 135 PASS unique_dim_date_full_date ....................................... [[32mPASS[0m in 0.06s]
+[0m02:23:55  87 of 135 START test not_null_dim_ticker_ticker_key ............................ [RUN]
+[0m02:23:55  88 of 135 START test unique_dim_ticker_symbol .................................. [RUN]
+[0m02:23:55  85 of 135 PASS accepted_values_dim_ticker_financial_template__bank__securities__corporate  [[32mPASS[0m in 0.06s]
+[0m02:23:55  89 of 135 START test unique_dim_ticker_ticker_key .............................. [RUN]
+[0m02:23:55  86 of 135 PASS not_null_dim_ticker_symbol ...................................... [[32mPASS[0m in 0.06s]
+[0m02:23:55  90 of 135 START test accepted_values_dq_issue_log_severity__error__warn__info .. [RUN]
+[0m02:23:55  87 of 135 PASS not_null_dim_ticker_ticker_key .................................. [[32mPASS[0m in 0.05s]
+[0m02:23:55  88 of 135 PASS unique_dim_ticker_symbol ........................................ [[32mPASS[0m in 0.04s]
+[0m02:23:55  91 of 135 START test not_null_dq_issue_log_issue_key ........................... [RUN]
+[0m02:23:55  92 of 135 START test unique_dq_issue_log_issue_key ............................. [RUN]
+[0m02:23:55  89 of 135 PASS unique_dim_ticker_ticker_key .................................... [[32mPASS[0m in 0.05s]
+[0m02:23:55  93 of 135 START sql table model gold.fact_financial_metric ..................... [RUN]
+[0m02:23:56  90 of 135 PASS accepted_values_dq_issue_log_severity__error__warn__info ........ [[32mPASS[0m in 0.06s]
+[0m02:23:56  91 of 135 PASS not_null_dq_issue_log_issue_key ................................. [[32mPASS[0m in 0.06s]
+[0m02:23:56  94 of 135 START sql table model gold.fact_price_daily .......................... [RUN]
+[0m02:23:56  92 of 135 PASS unique_dq_issue_log_issue_key ................................... [[32mPASS[0m in 0.05s]
+[0m02:23:56  95 of 135 START sql table model gold.mart_pipeline_health ...................... [RUN]
+[0m02:23:56  93 of 135 OK created sql table model gold.fact_financial_metric ................ [[32mOK[0m in 0.10s]
+[0m02:23:56  96 of 135 START test accepted_values_fact_financial_metric_report_type__income_statement__balance_sheet__cash_flow  [RUN]
+[0m02:23:56  97 of 135 START test not_null_fact_financial_metric_financial_metric_key ....... [RUN]
+[0m02:23:56  95 of 135 OK created sql table model gold.mart_pipeline_health ................. [[32mOK[0m in 0.10s]
+[0m02:23:56  97 of 135 PASS not_null_fact_financial_metric_financial_metric_key ............. [[32mPASS[0m in 0.05s]
+[0m02:23:56  96 of 135 PASS accepted_values_fact_financial_metric_report_type__income_statement__balance_sheet__cash_flow  [[32mPASS[0m in 0.05s]
+[0m02:23:56  98 of 135 START test not_null_fact_financial_metric_period_end_date_key ........ [RUN]
+[0m02:23:56  99 of 135 START test not_null_fact_financial_metric_ticker_key ................. [RUN]
+[0m02:23:56  100 of 135 START test relationships_fact_financial_metric_period_end_date_key__date_key__ref_dim_date_  [RUN]
+[0m02:23:56  94 of 135 OK created sql table model gold.fact_price_daily ..................... [[32mOK[0m in 0.18s]
+[0m02:23:56  101 of 135 START test relationships_fact_financial_metric_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+[0m02:23:56  98 of 135 PASS not_null_fact_financial_metric_period_end_date_key .............. [[32mPASS[0m in 0.07s]
+[0m02:23:56  100 of 135 PASS relationships_fact_financial_metric_period_end_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 0.07s]
+[0m02:23:56  99 of 135 PASS not_null_fact_financial_metric_ticker_key ....................... [[32mPASS[0m in 0.07s]
+[0m02:23:56  102 of 135 START test unique_combination_fact_financial_metric_ticker_key__period__report_type__metric_id  [RUN]
+[0m02:23:56  103 of 135 START test unique_fact_financial_metric_financial_metric_key ........ [RUN]
+[0m02:23:56  104 of 135 START test accepted_values_mart_pipeline_health_status__OK__WARN__FAIL  [RUN]
+[0m02:23:56  101 of 135 PASS relationships_fact_financial_metric_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 0.06s]
+[0m02:23:56  105 of 135 START test not_null_mart_pipeline_health_bronze_table ............... [RUN]
+[0m02:23:56  104 of 135 PASS accepted_values_mart_pipeline_health_status__OK__WARN__FAIL .... [[32mPASS[0m in 0.06s]
+[0m02:23:56  103 of 135 PASS unique_fact_financial_metric_financial_metric_key .............. [[32mPASS[0m in 0.07s]
+[0m02:23:56  102 of 135 PASS unique_combination_fact_financial_metric_ticker_key__period__report_type__metric_id  [[32mPASS[0m in 0.07s]
+[0m02:23:56  106 of 135 START test pipeline_health_bronze_reconciled ........................ [RUN]
+[0m02:23:56  107 of 135 START test unique_mart_pipeline_health_bronze_table ................. [RUN]
+[0m02:23:56  108 of 135 START test not_null_fact_price_daily_date_key ....................... [RUN]
+[0m02:23:56  105 of 135 PASS not_null_mart_pipeline_health_bronze_table ..................... [[32mPASS[0m in 0.06s]
+[0m02:23:56  109 of 135 START test not_null_fact_price_daily_ticker_key ..................... [RUN]
+[0m02:23:56  106 of 135 PASS pipeline_health_bronze_reconciled .............................. [[32mPASS[0m in 0.06s]
+[0m02:23:56  108 of 135 PASS not_null_fact_price_daily_date_key ............................. [[32mPASS[0m in 0.07s]
+[0m02:23:56  107 of 135 PASS unique_mart_pipeline_health_bronze_table ....................... [[32mPASS[0m in 0.07s]
+[0m02:23:56  110 of 135 START test relationships_fact_price_daily_date_key__date_key__ref_dim_date_  [RUN]
+[0m02:23:56  111 of 135 START test relationships_fact_price_daily_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+[0m02:23:56  112 of 135 START test unique_combination_fact_price_daily_ticker_key__date_key . [RUN]
+[0m02:23:56  109 of 135 PASS not_null_fact_price_daily_ticker_key ........................... [[32mPASS[0m in 0.08s]
+[0m02:23:56  113 of 135 START sql table model gold.mart_financial_summary ................... [RUN]
+[0m02:23:56  111 of 135 PASS relationships_fact_price_daily_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 0.07s]
+[0m02:23:56  112 of 135 PASS unique_combination_fact_price_daily_ticker_key__date_key ....... [[32mPASS[0m in 0.06s]
+[0m02:23:56  110 of 135 PASS relationships_fact_price_daily_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 0.09s]
+[0m02:23:56  114 of 135 START sql table model gold.mart_technical_indicators ................ [RUN]
+[0m02:23:56  113 of 135 OK created sql table model gold.mart_financial_summary .............. [[32mOK[0m in 0.10s]
+[0m02:23:56  115 of 135 START test not_null_mart_financial_summary_equity ................... [RUN]
+[0m02:23:56  117 of 135 START test not_null_mart_financial_summary_ticker_key ............... [RUN]
+[0m02:23:56  116 of 135 START test not_null_mart_financial_summary_net_profit_after_tax ..... [RUN]
+[0m02:23:56  117 of 135 PASS not_null_mart_financial_summary_ticker_key ..................... [[32mPASS[0m in 0.05s]
+[0m02:23:56  118 of 135 START test relationships_mart_financial_summary_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+[0m02:23:56  115 of 135 PASS not_null_mart_financial_summary_equity ......................... [[32mPASS[0m in 0.06s]
+[0m02:23:56  116 of 135 PASS not_null_mart_financial_summary_net_profit_after_tax ........... [[32mPASS[0m in 0.06s]
+[0m02:23:56  119 of 135 START test unique_combination_mart_financial_summary_symbol__period . [RUN]
+[0m02:23:56  118 of 135 PASS relationships_mart_financial_summary_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 0.05s]
+[0m02:23:56  119 of 135 PASS unique_combination_mart_financial_summary_symbol__period ....... [[32mPASS[0m in 0.03s]
+[0m02:23:56  114 of 135 OK created sql table model gold.mart_technical_indicators ........... [[32mOK[0m in 0.46s]
+[0m02:23:56  122 of 135 START test mart_technical_sma_within_price_range .................... [RUN]
+[0m02:23:56  121 of 135 START test mart_technical_rsi_in_range .............................. [RUN]
+[0m02:23:56  120 of 135 START test mart_technical_drawdown_non_positive ..................... [RUN]
+[0m02:23:56  123 of 135 START test not_null_mart_technical_indicators_ticker_key ............ [RUN]
+[0m02:23:57  120 of 135 PASS mart_technical_drawdown_non_positive ........................... [[32mPASS[0m in 0.07s]
+[0m02:23:57  122 of 135 PASS mart_technical_sma_within_price_range .......................... [[32mPASS[0m in 0.07s]
+[0m02:23:57  121 of 135 PASS mart_technical_rsi_in_range .................................... [[32mPASS[0m in 0.07s]
+[0m02:23:57  123 of 135 PASS not_null_mart_technical_indicators_ticker_key .................. [[32mPASS[0m in 0.07s]
+[0m02:23:57  124 of 135 START test relationships_mart_technical_indicators_ticker_key__ticker_key__ref_dim_ticker_  [RUN]
+[0m02:23:57  125 of 135 START test unique_combination_mart_technical_indicators_symbol__trade_date  [RUN]
+[0m02:23:57  125 of 135 PASS unique_combination_mart_technical_indicators_symbol__trade_date  [[32mPASS[0m in 0.05s]
+[0m02:23:57  124 of 135 PASS relationships_mart_technical_indicators_ticker_key__ticker_key__ref_dim_ticker_  [[32mPASS[0m in 0.06s]
+[0m02:23:57  126 of 135 START sql table model gold.mart_stock_alerts ........................ [RUN]
+[0m02:23:57  127 of 135 START sql table model gold.mart_stock_vs_index ...................... [RUN]
+[0m02:23:57  127 of 135 OK created sql table model gold.mart_stock_vs_index ................. [[32mOK[0m in 0.13s]
+[0m02:23:57  129 of 135 START test not_null_mart_stock_vs_index_index_close ................. [RUN]
+[0m02:23:57  130 of 135 START test unique_combination_mart_stock_vs_index_symbol__index_code__trade_date  [RUN]
+[0m02:23:57  126 of 135 OK created sql table model gold.mart_stock_alerts ................... [[32mOK[0m in 0.14s]
+[0m02:23:57  128 of 135 START test mart_stock_vs_index_within_common_range .................. [RUN]
+[0m02:23:57  131 of 135 START test accepted_values_mart_stock_alerts_rule_code__GOLDEN_CROSS__DEATH_CROSS__RSI_OVERBOUGHT__RSI_OVERSOLD__VOLUME_SPIKE__LARGE_MOVE_UP__LARGE_MOVE_DOWN__DEEP_DRAWDOWN  [RUN]
+[0m02:23:57  129 of 135 PASS not_null_mart_stock_vs_index_index_close ....................... [[32mPASS[0m in 0.07s]
+[0m02:23:57  128 of 135 PASS mart_stock_vs_index_within_common_range ........................ [[32mPASS[0m in 0.07s]
+[0m02:23:57  131 of 135 PASS accepted_values_mart_stock_alerts_rule_code__GOLDEN_CROSS__DEATH_CROSS__RSI_OVERBOUGHT__RSI_OVERSOLD__VOLUME_SPIKE__LARGE_MOVE_UP__LARGE_MOVE_DOWN__DEEP_DRAWDOWN  [[32mPASS[0m in 0.06s]
+[0m02:23:57  132 of 135 START test accepted_values_mart_stock_alerts_signal__bullish__bearish__neutral  [RUN]
+[0m02:23:57  130 of 135 PASS unique_combination_mart_stock_vs_index_symbol__index_code__trade_date  [[32mPASS[0m in 0.08s]
+[0m02:23:57  133 of 135 START test not_null_mart_stock_alerts_alert_key ..................... [RUN]
+[0m02:23:57  134 of 135 START test not_null_mart_stock_alerts_reason ........................ [RUN]
+[0m02:23:57  135 of 135 START test unique_mart_stock_alerts_alert_key ....................... [RUN]
+[0m02:23:57  133 of 135 PASS not_null_mart_stock_alerts_alert_key ........................... [[32mPASS[0m in 0.06s]
+[0m02:23:57  132 of 135 PASS accepted_values_mart_stock_alerts_signal__bullish__bearish__neutral  [[32mPASS[0m in 0.07s]
+[0m02:23:57  135 of 135 PASS unique_mart_stock_alerts_alert_key ............................. [[32mPASS[0m in 0.05s]
+[0m02:23:57  134 of 135 PASS not_null_mart_stock_alerts_reason .............................. [[32mPASS[0m in 0.07s]
+[0m02:23:57  
+[0m02:23:57  Finished running 17 table models, 118 data tests in 0 hours 0 minutes and 3.86 seconds (3.86s).
+[0m02:23:57  
+[0m02:23:57  [33mCompleted with 1 warning:[0m
+[0m02:23:57  
+[0m02:23:57  [[33mWARNING[0m]: in test stg_index_ohlc_consistent (models\silver\_silver.yml)
+[0m02:23:57  [[33mWARNING[0m]: Got 1 result, configured to warn if != 0
+[0m02:23:57  
+[0m02:23:57    compiled code at target\compiled\vnstock_medallion\models\silver\_silver.yml\stg_index_ohlc_consistent.sql
+[0m02:23:57  
+[0m02:23:57  Done. PASS=134 WARN=1 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=135
+
+=== [3/3] KIỂM CHỨNG độc lập ===
+Backend: duckdb
+
+Số dòng theo đối tượng:
+  bronze.price_daily_raw                 58,114
+  bronze.income_statement_raw             1,064
+  bronze.balance_sheet_raw                1,160
+  bronze.cash_flow_raw                      420
+  bronze.company_overview_raw                40
+  bronze.index_daily_raw                  1,000
+  bronze.ingestion_audit                    126
+  silver.stg_price_daily                 58,114
+  silver.stg_income_statement             1,064
+  silver.stg_balance_sheet                1,160
+  silver.stg_cash_flow                      420
+  silver.stg_company                         40
+  silver.stg_index_daily                  1,000
+  silver.dq_issue_log                       135
+  gold.dim_ticker                            40
+  gold.dim_date                           2,191
+  gold.fact_price_daily                  58,114
+  gold.fact_financial_metric              2,644
+  gold.fact_index_daily                   1,000
+  gold.mart_technical_indicators         58,114
+  gold.mart_stock_vs_index               40,000
+  gold.mart_financial_summary                60
+  gold.mart_stock_alerts                 10,920
+  gold.mart_pipeline_health                   6
+
+Kết quả kiểm chứng:
+  [PASS] INV   Đủ đối tượng Bronze/Silver/Gold                      23/23
+  [PASS] AC01  Bronze khớp số dòng manifest gốc                     manifest 61,798 | bronze 61,798
+  [PASS] AC01  Audit: mọi extract nạp đủ và khớp                    126/126 extract
+  [PASS] AC01  Không nạp kép CSV (chỉ Parquet)                      0 dòng từ file không phải parquet
+  [PASS] AC02  Bronze đủ metadata truy vết                          0 dòng thiếu metadata
+  [PASS] AC02  Số file nguồn trong Bronze = số extract audit        126 file | 126 extract
+  [PASS] AC03  stg_price_daily: khóa duy nhất, đủ khóa Bronze       58,114 dòng | 58,114 khóa | 58,114 khóa Bronze
+  [PASS] AC03  stg_index_daily: khóa duy nhất, đủ khóa Bronze       1,000 dòng | 1,000 khóa | 1,000 khóa Bronze
+  [PASS] AC03  stg_company: khóa duy nhất, đủ khóa Bronze           40 dòng | 40 khóa | 40 khóa Bronze
+  [PASS] AC03  stg_income_statement: khóa duy nhất, đủ khóa Bronze  1,064 dòng | 1,064 khóa | 1,064 khóa Bronze
+  [PASS] AC03  stg_balance_sheet: khóa duy nhất, đủ khóa Bronze     1,160 dòng | 1,160 khóa | 1,160 khóa Bronze
+  [PASS] AC03  stg_cash_flow: khóa duy nhất, đủ khóa Bronze         420 dòng | 420 khóa | 420 khóa Bronze
+  [PASS] AC04  Mart chỉ báo đủ dòng so với fact giá                 fact 58,114 | mart 58,114
+  [PASS] AC04  daily_return khớp pandas                             lệch lớn nhất 0.00e+00 | lệch NULL 0
+  [PASS] AC04  sma20 khớp pandas                                    lệch lớn nhất 5.68e-14 | lệch NULL 0
+  [PASS] AC04  sma50 khớp pandas                                    lệch lớn nhất 8.53e-14 | lệch NULL 0
+  [PASS] AC04  rsi14 khớp pandas                                    lệch lớn nhất 0.00e+00 | lệch NULL 0
+  [PASS] AC04  volatility_20d khớp pandas                           lệch lớn nhất 3.66e-16 | lệch NULL 0
+  [PASS] AC04  drawdown khớp pandas                                 lệch lớn nhất 0.00e+00 | lệch NULL 0
+  [PASS] AC04  Lợi suất lũy kế cổ phiếu/chỉ số khớp pandas          lệch lớn nhất 0.00e+00 | 0 dòng ngoài khoảng ngày chỉ số
+  [PASS] AC04  Fact giá join đủ dim_ticker và dim_date              0 dòng mồ côi
+
+  21/21 kiểm chứng đạt.
+
+Pipeline hoàn tất trong 12.3s.

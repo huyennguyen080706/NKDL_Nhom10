@@ -1,0 +1,32 @@
+== Datasets ==
+bronze   location=asia-southeast1 default_table_expiration_ms=5184000000
+gold     location=asia-southeast1 default_table_expiration_ms=5184000000
+silver   location=asia-southeast1 default_table_expiration_ms=5184000000
+
+== Đối chiếu số dòng BigQuery vs DuckDB local ==
+bronze.balance_sheet_raw              bigquery=  1,160 duckdb=  1,160 OK
+bronze.cash_flow_raw                  bigquery=    420 duckdb=    420 OK
+bronze.company_overview_raw           bigquery=     40 duckdb=     40 OK
+bronze.income_statement_raw           bigquery=  1,064 duckdb=  1,064 OK
+bronze.index_daily_raw                bigquery=  1,000 duckdb=  1,000 OK
+bronze.ingestion_audit                bigquery=    126 duckdb=    126 OK
+bronze.price_daily_raw                bigquery= 58,114 duckdb= 58,114 OK
+silver.dq_issue_log                   bigquery=    135 duckdb=    135 OK
+silver.stg_balance_sheet              bigquery=  1,160 duckdb=  1,160 OK
+silver.stg_cash_flow                  bigquery=    420 duckdb=    420 OK
+silver.stg_company                    bigquery=     40 duckdb=     40 OK
+silver.stg_income_statement           bigquery=  1,064 duckdb=  1,064 OK
+silver.stg_index_daily                bigquery=  1,000 duckdb=  1,000 OK
+silver.stg_price_daily                bigquery= 58,114 duckdb= 58,114 OK
+gold.dim_date                       bigquery=  2,191 duckdb=  2,191 OK
+gold.dim_ticker                     bigquery=     40 duckdb=     40 OK
+gold.fact_financial_metric          bigquery=  2,644 duckdb=  2,644 OK
+gold.fact_index_daily               bigquery=  1,000 duckdb=  1,000 OK
+gold.fact_price_daily               bigquery= 58,114 duckdb= 58,114 OK
+gold.mart_financial_summary         bigquery=     60 duckdb=     60 OK
+gold.mart_pipeline_health           bigquery=      6 duckdb=      6 OK
+gold.mart_stock_alerts              bigquery= 10,920 duckdb= 10,920 OK
+gold.mart_stock_vs_index            bigquery= 40,000 duckdb= 40,000 OK
+gold.mart_technical_indicators      bigquery= 58,114 duckdb= 58,114 OK
+
+Số bảng lệch: 0
