@@ -155,7 +155,7 @@ audit với trạng thái `empty` — hợp lệ, không làm dừng pipeline. K
 ingestion/      ingest_vnstock.py, config.json (có sẵn) · load_bronze.py (nạp Bronze + audit)
 dbt_project/    models/sources.yml · models/silver · models/gold/{dimensions,facts,marts} · macros
 orchestration/  definitions.py (Dagster: asset, job, schedule)
-app/            streamlit_app.py (điều hướng) · pages/ (6 trang) · styles/theme.css · services/warehouse.py · components/charts.py
+app/            streamlit_app.py (điều hướng) · views/ (6 trang) · styles/theme.css · services/warehouse.py · components/charts.py
 scripts/        run_pipeline.py · validate_pipeline.py
 warehouse/      vnstock.duckdb (sinh ra khi chạy, không commit)
 ```

@@ -17,18 +17,18 @@ wh.require_warehouse()
 ui.brand_bar()
 
 pages = [
-    st.Page("pages/1_Market_Overview.py", title="Market Overview", icon=":material/dashboard:",
+    st.Page("views/1_Market_Overview.py", title="Market Overview", icon=":material/dashboard:",
             url_path="Market_Overview", default=True),
-    st.Page("pages/2_Stock_Explorer.py", title="Stock Explorer", icon=":material/candlestick_chart:",
+    st.Page("views/2_Stock_Explorer.py", title="Stock Explorer", icon=":material/candlestick_chart:",
             url_path="Stock_Explorer"),
-    st.Page("pages/3_Risk_Correlation.py", title="Risk & Correlation", icon=":material/shield:",
+    st.Page("views/3_Risk_Correlation.py", title="Risk & Correlation", icon=":material/shield:",
             url_path="Risk_Correlation"),
-    st.Page("pages/4_Financials_Signals.py", title="Financials & Signals", icon=":material/receipt_long:",
+    st.Page("views/4_Financials_Signals.py", title="Financials & Signals", icon=":material/receipt_long:",
             url_path="Financials_Signals"),
-    st.Page("pages/5_Portfolio_Lab.py", title="Portfolio Lab", icon=":material/pie_chart:",
+    st.Page("views/5_Portfolio_Lab.py", title="Portfolio Lab", icon=":material/pie_chart:",
             url_path="Portfolio_Lab"),
     # Giữ nguyên đường dẫn cũ /Pipeline_Health để không gãy liên kết đã chia sẻ
-    st.Page("pages/6_Data_Pipeline.py", title="Data Pipeline", icon=":material/account_tree:",
+    st.Page("views/6_Data_Pipeline.py", title="Data Pipeline", icon=":material/account_tree:",
             url_path="Pipeline_Health"),
 ]
 pg = st.navigation(pages)
