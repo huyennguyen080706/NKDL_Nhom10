@@ -1,0 +1,112 @@
+/* Fox Stocks Light - design tokens và CSS có phạm vi nhỏ.
+   Chỉ dùng selector ổn định (data-testid) + class riêng bắt đầu bằng "vs-". */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --vs-primary: #6425FE;
+  --vs-primary-ink: #4A14D4;
+  --vs-bg: #F8F6FF;
+  --vs-panel: #FFFFFF;
+  --vs-lavender: #EAE3FF;
+  --vs-mint: #DFF9F0;
+  --vs-yellow: #FFF0C9;
+  --vs-blue: #DCEAFF;
+  --vs-text: #292929;
+  --vs-muted: #756D84;
+  --vs-border: #EAE5F2;
+  --vs-pos: #0E8F68;
+  --vs-neg: #D6303A;
+  --vs-radius: 16px;
+}
+
+html, body, .stApp, [data-testid="stSidebar"], button, input, textarea, select {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+}
+.stApp { background: var(--vs-bg); color: var(--vs-text); }
+[data-testid="stHeader"] { background: transparent; }
+.block-container { padding-top: 1.2rem; padding-bottom: 3rem; max-width: 1280px; }
+
+/* Sidebar trắng */
+[data-testid="stSidebar"] { background: var(--vs-panel); border-right: 1px solid var(--vs-border); }
+[data-testid="stSidebarNav"] a, [data-testid="stSidebar"] [data-testid="stPageLink-NavLink"] {
+  border-radius: 12px; padding: .45rem .7rem; color: var(--vs-text);
+}
+[data-testid="stSidebarNav"] a[aria-current="page"], [data-testid="stSidebar"] [data-testid="stPageLink-NavLink"][aria-current="page"] {
+  background: var(--vs-lavender); color: var(--vs-primary-ink); font-weight: 600;
+}
+
+/* Thẻ có viền (st.container(border=True)) = card trắng */
+[data-testid="stVerticalBlockBorderWrapper"] {
+  background: var(--vs-panel); border-color: var(--vs-border) !important; border-radius: var(--vs-radius) !important;
+}
+
+/* Tiêu đề */
+h1, h2, h3 { color: var(--vs-text); letter-spacing: -.01em; }
+h2 { font-size: 1.25rem !important; margin-top: 1.4rem !important; }
+h3 { font-size: 1.05rem !important; }
+
+/* Tabs */
+button[data-baseweb="tab"][aria-selected="true"] { color: var(--vs-primary); }
+div[data-baseweb="tab-highlight"] { background-color: var(--vs-primary) !important; }
+
+/* Thanh thương hiệu */
+.vs-brand { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.6rem;
+  background: var(--vs-panel); border:1px solid var(--vs-border); border-radius: var(--vs-radius);
+  padding: .8rem 1.1rem; margin-bottom: 1rem; }
+.vs-logo { font-weight:700; font-size:1.2rem; color: var(--vs-primary); letter-spacing:-.02em; }
+.vs-logo small { color: var(--vs-muted); font-weight:500; font-size:.8rem; margin-left:.5rem; }
+
+/* Header trang */
+.vs-title { font-size: 1.7rem; font-weight: 700; margin: .2rem 0 .1rem; }
+.vs-sub { color: var(--vs-muted); font-size: .92rem; margin-bottom: .6rem; }
+
+/* Chip / badge */
+.vs-chips { display:flex; flex-wrap:wrap; gap:.4rem; margin: .3rem 0 1rem; }
+.vs-chip { background: var(--vs-panel); border:1px solid var(--vs-border); color: var(--vs-muted);
+  border-radius: 999px; padding: .15rem .65rem; font-size: .78rem; white-space: nowrap; }
+.vs-chip b { color: var(--vs-text); font-weight:600; }
+.vs-badge { display:inline-block; border-radius:999px; padding:.12rem .6rem; font-size:.75rem; font-weight:600; }
+.vs-badge.primary { background: var(--vs-primary); color:#fff; }
+.vs-badge.ok { background: var(--vs-mint); color:#0B6B4C; }
+.vs-badge.warn { background: var(--vs-yellow); color:#8A5A00; }
+.vs-badge.fail { background:#FFE1E3; color:#A3121C; }
+.vs-badge.info { background: var(--vs-lavender); color: var(--vs-primary-ink); }
+
+/* KPI card pastel */
+.vs-kpi { border-radius: var(--vs-radius); padding: .95rem 1.1rem; height: 100%; border:1px solid transparent; }
+.vs-kpi.white { background: var(--vs-panel); border-color: var(--vs-border); }
+.vs-kpi.lavender { background: var(--vs-lavender); }
+.vs-kpi.mint { background: var(--vs-mint); }
+.vs-kpi.yellow { background: var(--vs-yellow); }
+.vs-kpi.blue { background: var(--vs-blue); }
+.vs-kpi .l { font-size:.78rem; color: #5b5470; font-weight:500; display:flex; align-items:center; gap:.3rem; }
+.vs-kpi .v { font-size:1.55rem; font-weight:700; margin:.15rem 0 .1rem; color: var(--vs-text); line-height:1.15; }
+.vs-kpi .d { font-size:.8rem; font-weight:600; }
+.vs-kpi .d.pos { color: var(--vs-pos); } .vs-kpi .d.neg { color: var(--vs-neg); } .vs-kpi .d.neu { color: var(--vs-muted); }
+.vs-kpi .h { font-size:.72rem; color: var(--vs-muted); margin-top:.15rem; }
+
+/* Callout */
+.vs-callout { border-radius: 14px; padding:.7rem .95rem; font-size:.88rem; margin:.5rem 0 .9rem; border:1px solid var(--vs-border); }
+.vs-callout.info { background: var(--vs-lavender); border-color: #D9CCFF; }
+.vs-callout.warn { background: var(--vs-yellow); border-color: #F3DB9B; }
+.vs-callout.err { background:#FFE9EA; border-color:#F6BCC0; }
+
+/* Sơ đồ pipeline */
+.vs-flow { display:flex; align-items:stretch; gap:.5rem; flex-wrap:wrap; }
+.vs-flow .node { flex:1 1 150px; border-radius: var(--vs-radius); padding:.8rem 1rem; border:1px solid var(--vs-border); background: var(--vs-panel); }
+.vs-flow .node .n { font-weight:700; } .vs-flow .node .s { color:var(--vs-muted); font-size:.78rem; }
+.vs-flow .arrow { align-self:center; color: var(--vs-primary); font-weight:700; font-size:1.2rem; }
+
+/* Bảng nhẹ */
+[data-testid="stDataFrame"] { border-radius: 12px; overflow:hidden; border:1px solid var(--vs-border); }
+
+/* Nút chính */
+.stButton > button[kind="primary"], .stButton > button:hover { border-color: var(--vs-primary); }
+.stButton > button[kind="primary"] { background: var(--vs-primary); color:#fff; border-radius: 10px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .block-container { padding-left: 1rem; padding-right: 1rem; }
+  .vs-title { font-size: 1.35rem; }
+  .vs-kpi .v { font-size: 1.3rem; }
+}

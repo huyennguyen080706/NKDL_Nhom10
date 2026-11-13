@@ -1,14 +1,14 @@
-"""Trang 4 - Sức khỏe pipeline. Nguồn: gold.mart_pipeline_health, bronze.ingestion_audit,
+"""Trang 6 - Data Pipeline (trước đây Pipeline Health). Nguồn: gold.mart_pipeline_health, bronze.ingestion_audit,
 silver.dq_issue_log và kết quả dbt (target/run_results.json)."""
 import pandas as pd
 import streamlit as st
 
-from components import charts
+import os
+
+from components import charts, ui
 from services import warehouse as wh
 
-st.set_page_config(page_title="Pipeline Health", page_icon="🩺", layout="wide")
-wh.require_warehouse()
-st.title("Pipeline Health")
+ui.page_header("Data Pipeline", "Luồng Vnstock → Bronze → Silver → Gold → Dashboard: đối soát nạp, độ mới, dbt test và sai lệch dữ liệu.")
 
 TABLE_LABEL = {
     "price_daily_raw": "Giá cổ phiếu", "index_daily_raw": "VN-Index", "company_overview_raw": "Hồ sơ doanh nghiệp",
@@ -35,16 +35,45 @@ health = wh.query("select * from gold.mart_pipeline_health")
 health["order"] = health.bronze_table.map({t: i for i, t in enumerate(TABLE_LABEL)})
 health = health.sort_values("order")
 
+# ------------------------------------------------------------------ sơ đồ luồng dữ liệu (số liệu thật từ kho)
+gold_rows = wh.query("""select
+    (select count(*) from gold.fact_price_daily) + (select count(*) from gold.fact_index_daily)
+  + (select count(*) from gold.fact_financial_metric) + (select count(*) from gold.dim_ticker)
+  + (select count(*) from gold.dim_date) as n""").n[0]
+flow = [("Vnstock / KBS", f"{int(health.datasets_expected.sum())} extract dự kiến", "ok"),
+        ("Bronze", f"{int(health.bronze_rows.sum()):,} dòng · {int(health.datasets_loaded.sum())} extract", "ok"),
+        ("Silver", f"{int(health.silver_rows.sum()):,} dòng đã chuẩn hóa", "ok"),
+        ("Gold", f"{int(gold_rows):,} dòng ở dim/fact", "ok"),
+        ("Dashboard", "6 trang · chỉ đọc Gold", "info")]
+nodes = []
+for i, (name, sub, kind) in enumerate(flow):
+    nodes.append(f'<div class="node"><div class="n">{ui._e(name)}</div><div class="s">{ui._e(sub)}</div></div>')
+    if i < len(flow) - 1:
+        nodes.append('<div class="arrow">→</div>')
+st.markdown('<div class="vs-flow">' + "".join(nodes) + "</div>", unsafe_allow_html=True)
+dagster_url = os.getenv("DAGSTER_URL") or (wh._SECRETS.get("DAGSTER_URL") if hasattr(wh, "_SECRETS") else None)
+if dagster_url:
+    st.link_button("Mở Dagster UI", str(dagster_url))
+else:
+    st.caption("Điều phối bằng Dagster (asset graph trong `orchestration/definitions.py`). "
+               "Đặt `DAGSTER_URL` để hiện liên kết tới Dagster UI.")
+st.write("")
+
 # ------------------------------------------------------------------ tổng quan
 total_manifest, total_bronze = int(health.manifest_rows.sum()), int(health.bronze_rows.sum())
-c1, c2, c3, c4 = st.columns(4)
-c1.metric("Extract đã nạp", f"{int(health.datasets_loaded.sum())}/{int(health.datasets_expected.sum())}")
-c2.metric("Bản ghi Bronze / manifest", f"{total_bronze:,}", "khớp 100%" if total_bronze == total_manifest
-          else f"lệch {total_bronze - total_manifest:+,}", delta_color="off" if total_bronze == total_manifest else "inverse")
-c3.metric("Batch mới nhất", str(health.latest_batch_id.iloc[0]), help=f"Tổng số batch: {int(health.total_batches.max())}")
 lag = health.data_lag_days.dropna()
-c4.metric("Độ trễ dữ liệu giá", f"{int(lag.max())} ngày" if len(lag) else "–",
-          help="Số ngày từ phiên giao dịch mới nhất đến thời điểm trích xuất")
+match = total_bronze == total_manifest
+ui.kpi_row([
+    dict(label="Extract đã nạp", value=f"{int(health.datasets_loaded.sum())}/{int(health.datasets_expected.sum())}", tone="lavender"),
+    dict(label="Bản ghi Bronze / manifest", value=f"{total_bronze:,}", tone="mint" if match else "yellow",
+         delta="khớp 100%" if match else f"lệch {total_bronze - total_manifest:+,}", direction="pos" if match else "neg",
+         help="Đối soát số dòng nạp với manifest"),
+    dict(label="Batch mới nhất", value=str(health.latest_batch_id.iloc[0]), tone="blue",
+         help=f"Tổng số batch: {int(health.total_batches.max())}"),
+    dict(label="Độ trễ dữ liệu giá", value=f"{int(lag.max())} ngày" if len(lag) else "Không có dữ liệu", tone="yellow",
+         help="Từ phiên giao dịch mới nhất đến lúc trích xuất"),
+])
+st.write("")
 
 st.subheader("Trạng thái theo bảng nguồn")
 cols = st.columns(len(health))
@@ -75,17 +104,19 @@ charts.table(view, column_config={
 st.subheader("Kết quả dbt build gần nhất")
 results, generated_at = wh.dbt_run_results()
 if results.empty:
-    st.info("Chưa có `dbt_project/target/run_results.json`. Chạy `python scripts/run_pipeline.py` để sinh kết quả.")
+    st.info("Không có dữ liệu giám sát dbt: chưa có `dbt_project/target/run_results.json`. "
+            "Chạy `python scripts/run_pipeline.py` để sinh kết quả.")
 else:
     tests = results[results["loại"] == "test"]
     models = results[results["loại"] == "model"]
     n_pass, n_warn = int((tests["trạng thái"] == "pass").sum()), int((tests["trạng thái"] == "warn").sum())
     n_bad = len(tests) - n_pass - n_warn
-    d1, d2, d3, d4 = st.columns(4)
-    d1.metric("Model dựng thành công", f"{int((models['trạng thái'] == 'success').sum())}/{len(models)}")
-    d2.metric("✅ Test đạt", f"{n_pass}/{len(tests)}")
-    d3.metric("⚠️ Test cảnh báo", f"{n_warn}")
-    d4.metric("❌ Test lỗi", f"{n_bad}")
+    ui.kpi_row([
+        dict(label="Model dựng thành công", value=f"{int((models['trạng thái'] == 'success').sum())}/{len(models)}", tone="lavender"),
+        dict(label="✅ Test đạt", value=f"{n_pass}/{len(tests)}", tone="mint"),
+        dict(label="⚠️ Test cảnh báo", value=f"{n_warn}", tone="yellow"),
+        dict(label="❌ Test lỗi", value=f"{n_bad}", tone="white"),
+    ])
     if generated_at:
         st.caption(f"Sinh lúc {pd.Timestamp(generated_at).tz_convert('Asia/Ho_Chi_Minh'):%d/%m/%Y %H:%M} · "
                    f"tổng thời gian chạy {results['thời gian (s)'].sum():.1f}s")
@@ -129,4 +160,3 @@ with st.expander("Nhật ký nạp Bronze (ingestion_audit)"):
                      "from bronze.ingestion_audit order by batch_id, target_table, dataset_key")
     charts.table(audit)
 
-wh.sidebar_footer()

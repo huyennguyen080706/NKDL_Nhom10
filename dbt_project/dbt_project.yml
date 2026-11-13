@@ -21,6 +21,8 @@ vars:
   volume_spike_ratio: 2.5
   large_move_pct: 0.05
   drawdown_alert_pct: -0.20
+  # Lãi suất phi rủi ro quy năm dùng tính Sharpe (giả định, chỉnh theo lãi suất kỳ hạn tương ứng)
+  risk_free_rate_annual: 0.04
 
 models:
   vnstock_medallion:

@@ -70,3 +70,12 @@
         median({{ expr }}) over (partition by {{ partition_by }})
     {%- endif -%}
 {%- endmacro %}
+
+{# Phân vị (nội suy) theo cửa sổ partition, q trong [0,1]. #}
+{% macro quantile_over(expr, q, partition_by) -%}
+    {%- if target.type == 'bigquery' -%}
+        percentile_cont({{ expr }}, {{ q }}) over (partition by {{ partition_by }})
+    {%- else -%}
+        quantile_cont({{ expr }}, {{ q }}) over (partition by {{ partition_by }})
+    {%- endif -%}
+{%- endmacro %}

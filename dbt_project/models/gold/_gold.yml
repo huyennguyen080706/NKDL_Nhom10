@@ -188,3 +188,89 @@ models:
           - accepted_values:
               arguments:
                 values: [OK, WARN, FAIL]
+
+  # ------------------------------------------------------------------ Marts phân tích (P1)
+  - name: mart_return_summary
+    description: >
+      Lợi suất giá (price return, close chưa xác minh điều chỉnh) theo tháng, 20/60/252 phiên, YTD và toàn kỳ.
+      Grain mã / loại kỳ / nhãn kỳ. CAGR chỉ có khi kỳ từ 365 ngày trở lên.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [symbol, period_type, period_label]
+      - expression_true:
+          name: return_summary_finite
+          arguments:
+            expression: "price_return > -1 and price_return < 20"
+      - expression_true:
+          name: return_summary_cagr_only_when_long
+          arguments:
+            expression: "cagr is null or years >= 0.99"
+    columns:
+      - name: symbol
+        data_tests: [not_null]
+      - name: period_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [MONTH, TRAIL_20D, TRAIL_60D, TRAIL_252D, YTD, ALL]
+
+  - name: mart_risk_metrics
+    description: >
+      Biến động quy năm (×√252), max drawdown, VaR95 lịch sử một ngày, beta so với VN-Index (chỉ ngày chung)
+      và Sharpe (lãi suất phi rủi ro = var risk_free_rate_annual). Grain mã / cửa sổ 60-120-252 phiên.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [symbol, window_days]
+      - expression_true:
+          name: risk_metrics_volatility_non_negative
+          arguments:
+            expression: "annualized_volatility is null or annualized_volatility >= 0"
+      - expression_true:
+          name: risk_metrics_drawdown_range
+          arguments:
+            expression: "max_drawdown <= 0 and max_drawdown > -1"
+      - expression_true:
+          name: risk_metrics_n_obs_within_window
+          arguments:
+            expression: "n_obs > 1 and n_obs <= window_days"
+      - expression_true:
+          name: risk_metrics_beta_has_enough_common_days
+          arguments:
+            expression: "beta is null or n_obs_beta >= 30"
+    columns:
+      - name: symbol
+        data_tests: [not_null]
+      - name: window_days
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [60, 120, 252]
+                quote: false
+
+  - name: mart_correlation_pairs
+    description: >
+      Tương quan Pearson lợi suất ngày theo cặp mã trên các ngày chung trong N phiên gần nhất của thị trường.
+      Grain cặp (symbol_a < symbol_b) / cửa sổ. quality_flag = LOW_OBS khi n_obs < 60.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [symbol_a, symbol_b, window_days]
+      - expression_true:
+          name: correlation_in_range
+          arguments:
+            expression: "correlation is null or (correlation >= -1.0000001 and correlation <= 1.0000001)"
+      - expression_true:
+          name: correlation_pair_ordered
+          arguments:
+            expression: "symbol_a < symbol_b"
+      - expression_true:
+          name: correlation_n_obs_within_window
+          arguments:
+            expression: "n_obs <= window_days"
+    columns:
+      - name: symbol_a
+        data_tests: [not_null]
+      - name: symbol_b
+        data_tests: [not_null]
