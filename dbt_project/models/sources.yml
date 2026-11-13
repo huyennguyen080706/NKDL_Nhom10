@@ -1,0 +1,68 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: >
+      Tầng Bronze - bản ghi nguồn Vnstock/KBS, append-only theo batch, do ingestion/load_bronze.py nạp.
+      Cột nghiệp vụ giữ nguyên như thư viện trả về; bổ sung symbol, report_period và metadata
+      _source, _extracted_at, _ingested_at, _batch_id, _source_file.
+    schema: bronze
+    tables:
+      - name: price_daily_raw
+        description: Giá OHLCV theo ngày của cổ phiếu. Grain - 1 bản ghi nguồn / mã / thời điểm / batch.
+        columns:
+          - name: symbol
+            data_tests: [not_null]
+          - name: time
+            data_tests: [not_null]
+          - name: _batch_id
+            data_tests: [not_null]
+      - name: index_daily_raw
+        description: Chỉ số thị trường (VNINDEX) theo ngày.
+        columns:
+          - name: symbol
+            data_tests: [not_null]
+          - name: _batch_id
+            data_tests: [not_null]
+      - name: company_overview_raw
+        description: Hồ sơ doanh nghiệp - 1 snapshot / mã / batch.
+        columns:
+          - name: symbol
+            data_tests: [not_null]
+          - name: _batch_id
+            data_tests: [not_null]
+      - name: income_statement_raw
+        description: Kết quả kinh doanh theo quý, dạng long (1 dòng / chỉ tiêu).
+        columns:
+          - name: symbol
+            data_tests: [not_null]
+          - name: _batch_id
+            data_tests: [not_null]
+      - name: balance_sheet_raw
+        description: Cân đối kế toán theo quý, dạng long.
+        columns:
+          - name: symbol
+            data_tests: [not_null]
+          - name: _batch_id
+            data_tests: [not_null]
+      - name: cash_flow_raw
+        description: Lưu chuyển tiền tệ theo quý, dạng long.
+        columns:
+          - name: symbol
+            data_tests: [not_null]
+          - name: _batch_id
+            data_tests: [not_null]
+      - name: ingestion_audit
+        description: Nhật ký nạp - 1 dòng / extract / batch, kèm đối soát số dòng và checksum.
+        data_tests:
+          - unique_combination:
+              arguments:
+                columns: [batch_id, dataset_key]
+          - expression_true:
+              name: bronze_audit_all_extracts_loaded
+              arguments:
+                expression: "load_status in ('loaded', 'empty')"
+          - expression_true:
+              name: bronze_audit_row_counts_match_manifest
+              arguments:
+                expression: "row_count_match"

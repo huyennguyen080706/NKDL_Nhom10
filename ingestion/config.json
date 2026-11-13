@@ -1,0 +1,21 @@
+{
+  "project_name": "Vietnam Stock Market Medallion Warehouse",
+  "provider": "kbs",
+  "start_date": "2021-01-01",
+  "end_date": null,
+  "interval": "1D",
+  "sleep_seconds": 2.0,
+  "prices": [
+    "FPT", "HPG", "VNM", "VCB", "MWG", "ACB", "BID", "CTG", "TCB", "MBB",
+    "VPB", "STB", "HDB", "TPB", "VIB", "SSI", "VND", "HCM", "VCI", "VHM",
+    "VIC", "VRE", "NVL", "KDH", "GAS", "PLX", "PVD", "PVS", "DGC", "DPM",
+    "DCM", "PNJ", "MSN", "SAB", "GVR", "FRT", "REE", "POW", "BVH", "VJC"
+  ],
+  "financial_symbols": [
+    "FPT", "HPG", "VNM", "VCB", "MWG", "ACB", "TCB", "MBB",
+    "SSI", "VHM", "GAS", "DGC", "PNJ", "REE", "FRT"
+  ],
+  "financial_periods": ["quarter"],
+  "reports": ["income_statement", "balance_sheet", "cash_flow"],
+  "index_symbols": ["VNINDEX"]
+}

@@ -1,0 +1,33 @@
+# Bí mật / cấu hình cá nhân
+.env
+.env.*
+!.env.example
+*credentials*.json
+*service-account*.json
+*keyfile*.json
+
+# Môi trường và file sinh tự động
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+dbt_project/.user.yml
+logs/
+
+# Dagster
+.dagster/
+.dagster_home/
+tmp*/
+
+# Kho local và raw data (có thể lớn, chịu điều khoản của nguồn)
+warehouse/*.duckdb
+warehouse/*.duckdb.wal
+data/raw/
+*.zip

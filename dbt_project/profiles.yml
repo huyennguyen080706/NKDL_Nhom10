@@ -1,0 +1,19 @@
+# Không chứa bí mật: mọi giá trị nhạy cảm lấy từ biến môi trường.
+# - local    : DuckDB, chạy offline (mặc định)
+# - bigquery : Google BigQuery, xác thực bằng `gcloud auth application-default login`
+vnstock_medallion:
+  target: "{{ env_var('DBT_TARGET', 'local') }}"
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', '../warehouse/vnstock.duckdb') }}"
+      schema: main
+      threads: 4
+    bigquery:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID', 'your-gcp-project-id') }}"
+      dataset: silver
+      location: "{{ env_var('BQ_LOCATION', 'asia-southeast1') }}"
+      threads: 4
+      job_execution_timeout_seconds: 300

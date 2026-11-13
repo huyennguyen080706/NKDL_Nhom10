@@ -1,0 +1,130 @@
+version: 2
+
+models:
+  - name: stg_price_daily
+    description: Giá OHLCV chuẩn hóa. Grain 1 mã / 1 ngày giao dịch; giá đơn vị nghìn đồng.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [symbol, trade_date]
+      - expression_true:
+          name: stg_price_ohlc_consistent
+          arguments:
+            expression: "is_ohlc_consistent"
+          config:
+            severity: warn
+      - expression_true:
+          name: stg_price_positive
+          arguments:
+            expression: "is_price_positive"
+      - expression_true:
+          name: stg_price_volume_non_negative
+          arguments:
+            expression: "is_volume_valid"
+    columns:
+      - name: symbol
+        data_tests: [not_null]
+      - name: trade_date
+        data_tests: [not_null]
+      - name: open
+        data_tests: [not_null]
+      - name: high
+        data_tests: [not_null]
+      - name: low
+        data_tests: [not_null]
+      - name: close
+        data_tests: [not_null]
+      - name: volume
+        data_tests: [not_null]
+      - name: batch_id
+        data_tests: [not_null]
+
+  - name: stg_index_daily
+    description: Chỉ số thị trường chuẩn hóa. Grain 1 chỉ số / 1 ngày giao dịch.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [index_code, trade_date]
+      - expression_true:
+          name: stg_index_ohlc_consistent
+          arguments:
+            expression: "is_ohlc_consistent"
+          config:
+            severity: warn
+      - expression_true:
+          name: stg_index_positive
+          arguments:
+            expression: "is_price_positive"
+    columns:
+      - name: index_code
+        data_tests: [not_null]
+      - name: trade_date
+        data_tests: [not_null]
+      - name: close
+        data_tests: [not_null]
+
+  - name: stg_company
+    description: Hồ sơ doanh nghiệp, snapshot mới nhất. Grain 1 mã.
+    columns:
+      - name: symbol
+        data_tests: [not_null, unique]
+      - name: exchange
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [HOSE, HNX, UPCOM]
+      - name: listing_date
+        data_tests: [not_null]
+
+  - name: stg_income_statement
+    description: Kết quả kinh doanh theo quý. Grain 1 mã / kỳ / chỉ tiêu. NULL giữ nguyên.
+    data_tests: &financial_tests
+      - unique_combination:
+          arguments:
+            columns: [symbol, period, metric_id]
+      - expression_true:
+          arguments:
+            expression: "fiscal_quarter between 1 and 4 and fiscal_year between 2000 and 2100"
+      - expression_true:
+          arguments:
+            expression: "unit = 'VND'"
+    columns: &financial_columns
+      - name: symbol
+        data_tests: [not_null]
+      - name: period
+        data_tests: [not_null]
+      - name: metric_id
+        data_tests: [not_null]
+      - name: metric_name
+        data_tests: [not_null]
+      - name: period_end_date
+        data_tests: [not_null]
+      - name: period_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [quarter, year]
+
+  - name: stg_balance_sheet
+    description: Cân đối kế toán theo quý. Grain 1 mã / kỳ / chỉ tiêu. NULL giữ nguyên.
+    data_tests: *financial_tests
+    columns: *financial_columns
+
+  - name: stg_cash_flow
+    description: Lưu chuyển tiền tệ theo quý. Grain 1 mã / kỳ / chỉ tiêu. NULL giữ nguyên.
+    data_tests: *financial_tests
+    columns: *financial_columns
+
+  - name: dq_issue_log
+    description: >
+      Bảng theo dõi sai lệch. Mỗi dòng là một bản ghi nghi vấn theo quy tắc (error/warn/info);
+      dữ liệu gốc không bị xóa.
+    columns:
+      - name: issue_key
+        data_tests: [not_null, unique]
+      - name: severity
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [error, warn, info]

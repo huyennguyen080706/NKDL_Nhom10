@@ -1,0 +1,32 @@
+name: vnstock_medallion
+version: "1.0.0"
+config-version: 2
+profile: vnstock_medallion
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Ngưỡng chất lượng dữ liệu (Silver)
+  price_limit_hose: 0.075        # biên độ HOSE 7% + sai số làm tròn
+  price_limit_other: 0.105       # HNX 10% + sai số làm tròn
+  balance_identity_tolerance: 0.02   # |Nợ + Vốn - Tổng nguồn vốn| / Tổng nguồn vốn
+  period_scale_ratio_max: 2.0        # vốn chủ sở hữu của kỳ / trung vị các kỳ của mã
+  # Ngưỡng cảnh báo theo quy tắc (Gold) - tín hiệu minh họa, không phải khuyến nghị giao dịch
+  rsi_overbought: 70
+  rsi_oversold: 30
+  volume_spike_ratio: 2.5
+  large_move_pct: 0.05
+  drawdown_alert_pct: -0.20
+
+models:
+  vnstock_medallion:
+    silver:
+      +schema: silver
+      +materialized: table
+    gold:
+      +schema: gold
+      +materialized: table

@@ -1,0 +1,190 @@
+version: 2
+
+models:
+  # ------------------------------------------------------------------ Dimensions
+  - name: dim_ticker
+    description: Dimension mã chứng khoán, 1 dòng / mã (trạng thái hiện tại).
+    columns:
+      - name: ticker_key
+        data_tests: [not_null, unique]
+      - name: symbol
+        data_tests: [not_null, unique]
+      - name: financial_template
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [bank, securities, corporate]
+
+  - name: dim_date
+    description: Dimension ngày lịch, 1 dòng / ngày. date_key dạng yyyymmdd.
+    columns:
+      - name: date_key
+        data_tests: [not_null, unique]
+      - name: full_date
+        data_tests: [not_null, unique]
+
+  # ------------------------------------------------------------------ Facts
+  - name: fact_price_daily
+    description: Fact giá OHLCV, grain ticker_key + date_key. Giá đơn vị nghìn đồng.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [ticker_key, date_key]
+    columns:
+      - name: ticker_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_ticker')
+                field: ticker_key
+      - name: date_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+  - name: fact_index_daily
+    description: Fact chỉ số thị trường, grain index_code + date_key.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [index_code, date_key]
+    columns:
+      - name: index_code
+        data_tests: [not_null]
+      - name: date_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+  - name: fact_financial_metric
+    description: >
+      Fact chỉ tiêu tài chính, grain mã / kỳ / loại báo cáo / chỉ tiêu. Không có published_at ở nguồn.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [ticker_key, period, report_type, metric_id]
+    columns:
+      - name: financial_metric_key
+        data_tests: [not_null, unique]
+      - name: ticker_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_ticker')
+                field: ticker_key
+      - name: period_end_date_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+      - name: report_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [income_statement, balance_sheet, cash_flow]
+
+  # ------------------------------------------------------------------ Marts
+  - name: mart_technical_indicators
+    description: SMA20/50, RSI14, lợi suất, độ biến động, drawdown. Grain mã / ngày.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [symbol, trade_date]
+      - expression_true:
+          name: mart_technical_rsi_in_range
+          arguments:
+            expression: "rsi14 is null or (rsi14 >= 0 and rsi14 <= 100)"
+      - expression_true:
+          name: mart_technical_drawdown_non_positive
+          arguments:
+            expression: "drawdown <= 0 and drawdown > -1"
+      - expression_true:
+          name: mart_technical_sma_within_price_range
+          arguments:
+            expression: "sma20 is null or sma20 > 0"
+    columns:
+      - name: ticker_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_ticker')
+                field: ticker_key
+
+  - name: mart_stock_vs_index
+    description: Lợi suất cổ phiếu so với VN-Index trên khoảng ngày chung. Grain mã / chỉ số / ngày.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [symbol, index_code, trade_date]
+      - expression_true:
+          name: mart_stock_vs_index_within_common_range
+          arguments:
+            expression: "trade_date >= common_start_date"
+    columns:
+      - name: index_close
+        data_tests: [not_null]
+
+  - name: mart_financial_summary
+    description: Chỉ tiêu tài chính chính theo kỳ, đã xoay ngang để so sánh. Grain mã / kỳ.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [symbol, period]
+    columns:
+      - name: ticker_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_ticker')
+                field: ticker_key
+      - name: net_profit_after_tax
+        data_tests: [not_null]
+      - name: equity
+        data_tests: [not_null]
+
+  - name: mart_stock_alerts
+    description: Tín hiệu theo quy tắc kèm ngưỡng, giá trị quan sát và giải thích. Grain mã / ngày / quy tắc.
+    columns:
+      - name: alert_key
+        data_tests: [not_null, unique]
+      - name: reason
+        data_tests: [not_null]
+      - name: rule_code
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [GOLDEN_CROSS, DEATH_CROSS, RSI_OVERBOUGHT, RSI_OVERSOLD, VOLUME_SPIKE,
+                         LARGE_MOVE_UP, LARGE_MOVE_DOWN, DEEP_DRAWDOWN]
+      - name: signal
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [bullish, bearish, neutral]
+
+  - name: mart_pipeline_health
+    description: Trạng thái nạp, đối soát, độ mới và chất lượng theo từng bảng Bronze.
+    data_tests:
+      - expression_true:
+          name: pipeline_health_bronze_reconciled
+          arguments:
+            expression: "is_reconciled"
+    columns:
+      - name: bronze_table
+        data_tests: [not_null, unique]
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [OK, WARN, FAIL]
